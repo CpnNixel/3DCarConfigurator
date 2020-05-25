@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace _3DCarConfigurator.Services
 {
-    interface IRepository<T>
+    public interface IRepository<T>
     {
-        T get(int id);
+        T Get(int id);
         IEnumerable<T> GetAll();
         bool Add(T item);
         bool Delete(T item);

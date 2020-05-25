@@ -12,6 +12,8 @@ using _3DCarConfigurator.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using _3DCarConfigurator.Services;
+using _3DCarConfigurator.Models;
 
 namespace _3DCarConfigurator
 {
@@ -32,6 +34,9 @@ namespace _3DCarConfigurator
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.AddScoped<IRepository<Car>, SqlCarRepository>();
+            
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
