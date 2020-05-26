@@ -4,25 +4,29 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection.Metadata.Ecma335;
 using System.Threading.Tasks;
 
 namespace _3DCarConfigurator.Services
 {
-    public class SqlCarRepository : IRepository<Car>
+    public class SqlDetailRepository : IRepository<Detail>
     {
         private ApplicationDbContext _context;
 
-        public SqlCarRepository(ApplicationDbContext context)
+        public SqlDetailRepository(ApplicationDbContext context)
         {
             _context = context;
         }
-    
-        public bool Add(Car item)
+
+        public Detail GetDetail(int id)
+        {
+            return _context.Details.Find(id);
+        }
+
+        public bool Add(Detail item)
         {
             try
             {
-                _context.Cars.Add(item);
+                _context.Details.Add(item);
                 _context.SaveChanges();
                 return true;
             }
@@ -32,14 +36,14 @@ namespace _3DCarConfigurator.Services
             }
         }
 
-        public bool Delete(Car item)
+        public bool Delete(Detail item)
         {
             try
             {
-                Car car = Get(item.Id);
-                if (car != null)
+                Detail detail = Get(item.Id);
+                if (detail != null)
                 {
-                    _context.Remove(car);
+                    _context.Remove(detail);
                     _context.SaveChanges();
                     return true;
                 }
@@ -51,28 +55,28 @@ namespace _3DCarConfigurator.Services
             }
         }
 
-        public bool Edit(Car item)
+        public bool Edit(Detail item)
         {
             throw new NotImplementedException();
         }
 
-        public Car Get(int id)
+        public Detail Get(int id)
         {
-            if(_context.Cars.Count(x=> x.Id == id) > 0)
+            if (_context.Details.Count(x => x.Id == id) > 0)
             {
-                return _context.Cars.FirstOrDefault(x => x.Id == id);
+                return _context.Details.FirstOrDefault(x => x.Id == id);
             }
             return null;
         }
 
-        public IEnumerable<Car> GetAll()
+        public void Update(Car detail)
         {
-            return _context.Cars;
+            _context.Entry(detail).State = EntityState.Modified;
         }
-        
-        public void Update(Car car)
+
+        public IEnumerable<Detail> GetAll()
         {
-            _context.Entry(car).State = EntityState.Modified;
+            return _context.Details;
         }
 
         public void Save()

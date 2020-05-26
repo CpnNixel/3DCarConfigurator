@@ -14,8 +14,8 @@ namespace _3DCarConfigurator.Data
         {
         }
 
+        public DbSet<Car> Cars { get; set; }
         public DbSet<Detail> Details { get; set; }
-        public DbSet<Car> Cars{ get; set; }
         public DbSet<Configuration> Configurations { get; set; }
     }
 }

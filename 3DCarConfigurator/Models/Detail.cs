@@ -8,8 +8,9 @@ namespace _3DCarConfigurator.Models
         public int Id { get; set; }
         [Required(ErrorMessage = "Detail name must be provided")]
         public string Name { get; private set; }
+        [Required(ErrorMessage = "Category must be provided")]
         public string Category { get; set; }
-        public int Price { get; set; }
+        public int Price { get ; set; }
 
         public bool ChangeName(string name)
         {

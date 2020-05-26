@@ -26,17 +26,6 @@ namespace _3DCarConfigurator.Controllers
             return View();
         }
 
-        public IActionResult Topcars()
-        {
-            
-            return View(new Car()
-            {
-                Id = 1,
-                Name = "dasdsa"
-
-            });
-        }
-
         public IActionResult Privacy()
         {
             return View();

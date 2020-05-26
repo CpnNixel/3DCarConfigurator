@@ -36,6 +36,8 @@ namespace _3DCarConfigurator
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddScoped<IRepository<Car>, SqlCarRepository>();
+            services.AddScoped<IRepository<Detail>, SqlDetailRepository>();
+            services.AddScoped<IRepository<Configuration>, SqlConfigurationRepository>();
             
             services.AddControllersWithViews();
             services.AddRazorPages();
