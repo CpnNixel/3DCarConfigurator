@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using _3DCarConfigurator.Models;
 using _3DCarConfigurator.Services;
+using _3DCarConfigurator.Data;
 
 namespace _3DCarConfigurator.Controllers
 {
@@ -14,11 +15,13 @@ namespace _3DCarConfigurator.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IRepository<Car> _carsRepo;
+        ApplicationDbContext db;
 
-        public HomeController(ILogger<HomeController> logger, IRepository<Car> car)
+        public HomeController(ILogger<HomeController> logger, IRepository<Car> car, ApplicationDbContext context)
         {
             _logger = logger;
             _carsRepo = car;
+            db = context;
         }
 
         public IActionResult Index()
@@ -29,6 +32,11 @@ namespace _3DCarConfigurator.Controllers
         public IActionResult Privacy()
         {
             return View();
+        }
+
+        public IActionResult Cars()
+        {
+            return View(db.Cars.ToList());
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

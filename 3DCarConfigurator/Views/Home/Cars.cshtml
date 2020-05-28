@@ -1,0 +1,17 @@
+﻿@model IEnumerable<_3DCarConfigurator.Models.Car>
+@{
+    ViewData["Title"] = "Cars";
+}
+
+<h1>Cars</h1>
+<div class="cars">
+    @foreach (var phone in Model)
+    {
+    <div class="car">
+        <span>@phone.Name</span>
+        <span>@phone.Price</span>
+        <img src="~/img/@phone.PathToModel" width="400" height="200" />
+    </div>
+        
+    }
+</div>
