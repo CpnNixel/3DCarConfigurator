@@ -8,6 +8,7 @@ namespace _3DCarConfigurator.Models
 {
     public class ApplicationUser : IdentityUser
     {
+        [PersonalData]
         public List<Configuration> LikedConfigs {get;set;}
     }
 }
