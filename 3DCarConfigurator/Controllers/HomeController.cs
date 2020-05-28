@@ -34,9 +34,21 @@ namespace _3DCarConfigurator.Controllers
             return View();
         }
 
-        public IActionResult Cars()
+        public IActionResult Cars(int? id)
         {
+            if(id != null)
+            {
+                return RedirectToAction("Car", new { id = id });
+            }
             return View(db.Cars.ToList());
+        }
+
+        public IActionResult Car(int id)
+        {
+            Models.Car result = (from kek in db.Cars
+                                 where kek.Id == id
+                                 select kek).FirstOrDefault();
+            return View(result);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

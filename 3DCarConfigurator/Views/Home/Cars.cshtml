@@ -5,15 +5,18 @@
 
 <h1>Cars</h1>
 <div class="cars">
-    @foreach (var phone in Model)
+    @foreach (var car in Model)
     {
         <div class="car">
-            <img src="~/img/@phone.PathToModel" width="350" height="200" /><br />
+            <img src="~/img/@car.PathToModel" width="350" height="200" /><br />
             <div class="description">
                 <span class="carName">
-                    <b>Price:</b> @phone.Name
+                    <b>Name:</b> @car.Name
                 </span><br />
-                <span class="carPrice">@phone.Price</span>
+                <span class="carPrice">
+                    <b>Price:</b> @car.Price
+                </span>
+                <a href="Cars/@car.Id">Open page</a>
             </div>
         </div>
     }

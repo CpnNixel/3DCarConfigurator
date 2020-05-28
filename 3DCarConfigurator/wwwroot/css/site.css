@@ -80,9 +80,15 @@ body {
 
 .car{
     width: 350px;
-    height: 400px;
+    height: 300px;
     display: inline-block;
-    border: 1px solid #000;
+}
+
+.car .description {
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    font-size: 18px;
 }
 
 .carName{

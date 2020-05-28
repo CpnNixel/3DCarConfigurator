@@ -1,0 +1,19 @@
+﻿@model Car
+@{
+    ViewData["Title"] = "Car";
+}
+
+
+<div class="car">
+    <img src="~/img/@Model.PathToModel" width="350" height="200" /><br />
+    <div class="description">
+        <span class="carName">
+            <b>Name:</b> @Model.Name
+        </span><br />
+        <span class="carPrice">
+            <b>Price:</b> @Model.Price
+        </span>
+        <a href="Cars/@Model.Id">Open page</a>
+    </div>
+</div>
+
