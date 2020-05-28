@@ -7,11 +7,14 @@
 <div class="cars">
     @foreach (var phone in Model)
     {
-    <div class="car">
-        <span>@phone.Name</span>
-        <span>@phone.Price</span>
-        <img src="~/img/@phone.PathToModel" width="400" height="200" />
-    </div>
-        
+        <div class="car">
+            <img src="~/img/@phone.PathToModel" width="350" height="200" /><br />
+            <div class="description">
+                <span class="carName">
+                    <b>Price:</b> @phone.Name
+                </span><br />
+                <span class="carPrice">@phone.Price</span>
+            </div>
+        </div>
     }
 </div>
