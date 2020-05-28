@@ -10,6 +10,7 @@ namespace _3DCarConfigurator.Models
         public string Name { get; private set; }
         [Required(ErrorMessage = "Category must be provided")]
         public string Category { get; set; }
+        [DataType(DataType.Currency)]
         public int Price { get ; set; }
 
         public bool ChangeName(string name)

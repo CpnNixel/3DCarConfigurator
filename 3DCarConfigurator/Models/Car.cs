@@ -7,10 +7,12 @@ namespace _3DCarConfigurator.Models
     public class Car
     {
         public int Id { get; set; }
-        [Required(ErrorMessage ="Car name must be provided")]
+        [Required(ErrorMessage = "Car name must be provided")]
         public string Name { get; set; }
         public int CurrentConfigurationId { get; set; }
         public string PathToModel { get; set; }
+        [DataType(DataType.Currency)]
+        public float Price { get; set; }
         //public Configuration CurrentConfiguration { get; set; }
         
 
