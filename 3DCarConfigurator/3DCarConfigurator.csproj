@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\Vehicles\**" />
+    <Content Remove="Views\Vehicles\**" />
+    <EmbeddedResource Remove="Views\Vehicles\**" />
+    <None Remove="Views\Vehicles\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.4" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.4" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.4" />
@@ -14,10 +21,6 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.4" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.3" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Views\Vehicles\" />
   </ItemGroup>
 
 </Project>
