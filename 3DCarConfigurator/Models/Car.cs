@@ -6,19 +6,19 @@ namespace _3DCarConfigurator.Models
 {
     public class Car
     {
-
         public int Id { get; set; }
-        public int CurrentConfigurationId { get; set; }
-        //public List<Configuration> AvailableForBuyingConfigs { get; set; }
-
         [Required(ErrorMessage = "Car name must be provided")]
         public string Name { get; set; }
+        public int CurrentConfigurationId { get; set; }
         public string PathToModel { get; set; }
         [DataType(DataType.Currency)]
         public float Price { get; set; }
-       /* public Configuration CurrentConfiguration { get; set; }
+        //public Configuration CurrentConfiguration { get; set; }
         
-       public bool AddConfig(Configuration configuration)
+
+        public List<Configuration> AvailableForBuyingConfigs { get; set; }
+
+        public bool AddConfig(Configuration configuration)
         {
             if (configuration != null && configuration.Id != CurrentConfigurationId)
             {
@@ -37,6 +37,6 @@ namespace _3DCarConfigurator.Models
             }
             return false;
         }
-*/
+
     }
 }

@@ -1,22 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace _3DCarConfigurator.Models
 {
     public class Detail
     {
-
         public int Id { get; set; }
         [Required(ErrorMessage = "Detail name must be provided")]
-        public string Name { get; set; }
+        public string Name { get; private set; }
         [Required(ErrorMessage = "Category must be provided")]
         public string Category { get; set; }
         [DataType(DataType.Currency)]
         public int Price { get ; set; }
-        public virtual ICollection<ConfigurationDetail> ConfDetails { get; set; }
-
 
         public bool ChangeName(string name)
         {

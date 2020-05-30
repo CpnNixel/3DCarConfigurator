@@ -236,9 +236,6 @@ namespace _3DCarConfigurator.Data.Migrations
                     b.Property<string>("PathToModel")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<float>("Price")
-                        .HasColumnType("real");
-
                     b.HasKey("Id");
 
                     b.ToTable("Cars");
@@ -274,15 +271,22 @@ namespace _3DCarConfigurator.Data.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Category")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("ConfigurationId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Price")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ConfigurationId");
 
                     b.ToTable("Details");
                 });
@@ -344,11 +348,18 @@ namespace _3DCarConfigurator.Data.Migrations
                         .WithMany("LikedConfigs")
                         .HasForeignKey("ApplicationUserId");
 
-                    b.HasOne("_3DCarConfigurator.Models.Car", "CarModel")
+                    b.HasOne("_3DCarConfigurator.Models.Car", null)
                         .WithMany("AvailableForBuyingConfigs")
                         .HasForeignKey("CarId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("_3DCarConfigurator.Models.Detail", b =>
+                {
+                    b.HasOne("_3DCarConfigurator.Models.Configuration", null)
+                        .WithMany("Details")
+                        .HasForeignKey("ConfigurationId");
                 });
 #pragma warning restore 612, 618
         }
