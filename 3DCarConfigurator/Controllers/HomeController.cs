@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using _3DCarConfigurator.Models;
 using _3DCarConfigurator.Services;
 using _3DCarConfigurator.Data;
+using System.Security.Policy;
 
 namespace _3DCarConfigurator.Controllers
 {
@@ -51,11 +52,11 @@ namespace _3DCarConfigurator.Controllers
             db.Users.FirstOrDefault().LikedConfigs = db.Configurations.ToList();
             db.SaveChanges();
             CarConfigViewModel cfgViewModel = new CarConfigViewModel { Car = result, Configs = db.Configurations.Where(x => x.CarId == result.Id) };
-            //CarConfigViewModel cfgViewModel = new CarConfigViewModel { Car = result, Configs = db.Users.FirstOrDefault().LikedConfigs };
+
             foreach (var conf in cfgViewModel.Configs)
             {
-                string[] arr = conf.DetailsString.Split(", ");
-                //conf.Details = db.Details.Where(x => x.ConfigurationId == conf.Id).ToList();
+                string[] arr = conf.DetailsString.Split(",");
+
                 List<Detail> det = new List<Detail>();
                 foreach (var element in arr)
                 {
@@ -63,6 +64,9 @@ namespace _3DCarConfigurator.Controllers
                 }
                 conf.Details = det;
             }
+
+            cfgViewModel.context = db;
+            cfgViewModel.configLine = db.Configurations.Where(x => x.Id == cfgViewModel.Car.CurrentConfigurationId).First().DetailsString;
 
             return View(cfgViewModel);
         }

@@ -1,7 +1,9 @@
 ﻿@model CarConfigViewModel
 @{
     ViewData["Title"] = "Car";
+
 }
+
 <link rel="stylesheet" href="~/css/CarPage.css" />
 
 <div class="car">
@@ -19,17 +21,62 @@
 <div class="configurations">
     <div class="details">
         <div class="colors">
-            <span>Color:</span>
+            <div class="colorHeader">Color:</div>
             @foreach (var config in Model.Configs)
             {
 
                 @foreach (var detail in config.Details.Where(x => x.Category == "Color"))
                 {
-                    <div style="width: 50px; height: 50px; background: @detail.Name; display: inline-block; border: 1px solid #000" class=""></div>
+                    if (config.Id == Model.Car.CurrentConfigurationId)
+                    {
+                        <div class="color selected" style=" background: @detail.Name;" data-detailId="@detail.Id" asp-for="color"></div>
+                    }
+                    else
+                    {
+                        <div class="color" style=" background: @detail.Name;" data-detailId="@detail.Id" asp-for="color"></div>
+                    }
+
+                }
+
+            }
+        </div>
+        <div class="wheels">
+            @foreach (var config in Model.Configs)
+            {
+
+                @foreach (var detail in config.Details.Where(x => x.Category == "Wheels"))
+                {
+                    if (config.Id == Model.Car.CurrentConfigurationId)
+                    {
+                        <p><input type="radio" name="Wheels" data-detailId="@detail.Id" checked />@detail.Name</p>
+                    }
+                    else
+                    {
+                        <p><input type="radio" name="Wheels" data-detailId="@detail.Id" />@detail.Name</p>
+                    }
                 }
 
             }
         </div>
     </div>
 </div>
+
+<p id="like">LIKE</p>
+
+<script>
+    document.querySelector("#like").onclick = function () {
+        var configurationDetails = "";
+
+        var pickedColor = document.querySelector(".selected");
+        configurationDetails = pickedColor.dataset.detailid;
+
+        var checkedList = document.querySelectorAll("input:checked");
+        checkedList.forEach((element) => {
+            configurationDetails += "," + element.dataset.detailid;
+        })
+
+        document.location.replace("~../../../SetLike/" + @Model.Car.Id + "," + configurationDetails);
+
+    };
+</script>
 

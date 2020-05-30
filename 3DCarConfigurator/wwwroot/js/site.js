@@ -1,4 +1,9 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
-
-// Write your JavaScript code.
+﻿var colors = document.querySelectorAll(".color");
+colors.forEach((element) => {
+    element.onclick = function () {
+        colors.forEach((elem) => {
+            elem.className = "color"
+        })
+        element.className = "color selected"
+    };
+})
