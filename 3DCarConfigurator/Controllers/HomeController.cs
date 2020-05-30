@@ -9,6 +9,7 @@ using _3DCarConfigurator.Models;
 using _3DCarConfigurator.Services;
 using _3DCarConfigurator.Data;
 using System.Security.Policy;
+using Microsoft.AspNetCore.Authorization;
 
 namespace _3DCarConfigurator.Controllers
 {
@@ -44,6 +45,7 @@ namespace _3DCarConfigurator.Controllers
             return View(db.Cars.ToList());
         }
 
+        [AllowAnonymous]
         public IActionResult Car(int id)
         {
             Models.Car result = (from kek in db.Cars
