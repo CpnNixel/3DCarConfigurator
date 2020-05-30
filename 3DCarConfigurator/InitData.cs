@@ -16,19 +16,19 @@ namespace _3DCarConfigurator
                         {
                             Name = "BMW Blue",
                             PathToModel = "blueBMW.png",
-                            Price = 100000
+                            CarPrice = 100_000F
                         },
                         new Models.Car
                         {
                             Name = "BMW Red",
                             PathToModel = "redBMW.png",
-                            Price = 70000
+                            CarPrice = 70_000F
                         },
                         new Models.Car
                         {
                             Name = "BMW White",
                             PathToModel = "whiteBMW.png",
-                            Price = 119000
+                            CarPrice = 119_000F
                         }
                     );
                 context.SaveChanges();

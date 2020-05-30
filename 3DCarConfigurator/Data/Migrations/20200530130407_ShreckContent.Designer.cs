@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using _3DCarConfigurator.Data;
 
 namespace _3DCarConfigurator.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200530130407_ShreckContent")]
+    partial class ShreckContent
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -173,9 +175,6 @@ namespace _3DCarConfigurator.Data.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<string>("LikedString")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
 
@@ -229,8 +228,8 @@ namespace _3DCarConfigurator.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<float>("CarPrice")
-                        .HasColumnType("real");
+                    b.Property<int>("CarPrice")
+                        .HasColumnType("int");
 
                     b.Property<int>("CurrentConfigurationId")
                         .HasColumnType("int");
@@ -286,8 +285,8 @@ namespace _3DCarConfigurator.Data.Migrations
                     b.Property<int?>("ConfigurationId")
                         .HasColumnType("int");
 
-                    b.Property<float>("DetailPrice")
-                        .HasColumnType("real");
+                    b.Property<int>("DetailPrice")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()

@@ -11,7 +11,7 @@ namespace _3DCarConfigurator.Models
         [Required(ErrorMessage = "Category must be provided")]
         public string Category { get; set; }
         [DataType(DataType.Currency)]
-        public int Price { get ; set; }
+        public float DetailPrice { get ; set; }
 
         public bool ChangeName(string name)
         {
@@ -27,7 +27,7 @@ namespace _3DCarConfigurator.Models
         {
             if (price != null && price >= 0)
             {
-                Price = (int)price;
+                DetailPrice = (int)price;
                 return true;
             }
             return false;

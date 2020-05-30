@@ -10,5 +10,6 @@ namespace _3DCarConfigurator.Models
     {
         [PersonalData]
         public List<Configuration> LikedConfigs {get;set;}
+        public string LikedString { get; set; }
     }
 }
