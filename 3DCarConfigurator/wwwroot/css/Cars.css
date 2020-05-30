@@ -1,0 +1,20 @@
+﻿/*Cars Main styles*/
+.cars {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.car {
+    width: 350px;
+    height: 300px;
+    display: inline-block;
+}
+
+.car .description {
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    font-size: 18px;
+}

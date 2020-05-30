@@ -36,7 +36,7 @@ namespace _3DCarConfigurator.Controllers
 
         public IActionResult Cars(int? id)
         {
-            if(id != null)
+            if (id != null)
             {
                 return RedirectToAction("Car", new { id = id });
             }
@@ -48,7 +48,23 @@ namespace _3DCarConfigurator.Controllers
             Models.Car result = (from kek in db.Cars
                                  where kek.Id == id
                                  select kek).FirstOrDefault();
-            return View(result);
+            db.Users.FirstOrDefault().LikedConfigs = db.Configurations.ToList();
+            db.SaveChanges();
+            CarConfigViewModel cfgViewModel = new CarConfigViewModel { Car = result, Configs = db.Configurations.Where(x => x.CarId == result.Id) };
+            //CarConfigViewModel cfgViewModel = new CarConfigViewModel { Car = result, Configs = db.Users.FirstOrDefault().LikedConfigs };
+            foreach (var conf in cfgViewModel.Configs)
+            {
+                string[] arr = conf.DetailsString.Split(", ");
+                //conf.Details = db.Details.Where(x => x.ConfigurationId == conf.Id).ToList();
+                List<Detail> det = new List<Detail>();
+                foreach (var element in arr)
+                {
+                    det.Add(db.Details.Where(x => x.Id == Convert.ToInt32(element)).FirstOrDefault());
+                }
+                conf.Details = det;
+            }
+
+            return View(cfgViewModel);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
