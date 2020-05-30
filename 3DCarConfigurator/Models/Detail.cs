@@ -7,7 +7,7 @@ namespace _3DCarConfigurator.Models
     {
         public int Id { get; set; }
         [Required(ErrorMessage = "Detail name must be provided")]
-        public string Name { get; private set; }
+        public string Name { get; set; }
         [Required(ErrorMessage = "Category must be provided")]
         public string Category { get; set; }
         [DataType(DataType.Currency)]
