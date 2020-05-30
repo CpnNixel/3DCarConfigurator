@@ -36,7 +36,11 @@ namespace _3DCarConfigurator
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddDefaultIdentity<ApplicationUser>(options =>
+            { 
+                options.SignIn.RequireConfirmedAccount = true;
+/*                options.SignIn.RequireConfirmedEmail = true;*/
+            })
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
@@ -45,15 +49,7 @@ namespace _3DCarConfigurator
             services.AddScoped<IRepository<Detail>, SqlDetailRepository>();
             services.AddScoped<IRepository<Configuration>, SqlConfigurationRepository>();
 
-          /*  services.AddMvc(options =>
-            {
-                var policy = new AuthorizationPolicyBuilder()
-                                .RequireAuthenticatedUser()
-                                .Build();
-                options.Filters.Add(new AuthorizeFilter(policy));
-            }).AddXmlSerializerFormatters();*/
-
-
+         
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
