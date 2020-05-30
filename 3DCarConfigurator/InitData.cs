@@ -79,8 +79,8 @@ namespace _3DCarConfigurator
                                 context.Details.Where(x => x.Name == "18 radius").FirstOrDefault()
                             }*/
 
-                            DetailsString = (context.Details.Where(x => x.Name == "White").FirstOrDefault().Id.ToString() + ", " +
-                            context.Details.Where(x => x.Name == "18 radius").FirstOrDefault().Id.ToString())
+                            DetailsString = context.Details.Where(x => x.Name == "White").FirstOrDefault().Id.ToString() + ", " +
+                            context.Details.Where(x => x.Name == "18 radius").FirstOrDefault().Id.ToString()
                         },
                         new Models.Configuration
                         {
