@@ -7,17 +7,12 @@ namespace _3DCarConfigurator.Models
     public class Car
     {
         public int Id { get; set; }
-
         [Required(ErrorMessage = "Car name must be provided")]
         public string Name { get; set; }
-
         public int CurrentConfigurationId { get; set; }
         public string PathToModel { get; set; }
-        public string PathToPicture { get; set; }
-
         [DataType(DataType.Currency)]
         public float CarPrice { get; set; }
-
         //public Configuration CurrentConfiguration { get; set; }
         public List<Configuration> AvailableForBuyingConfigs { get; set; }
 
@@ -40,5 +35,6 @@ namespace _3DCarConfigurator.Models
             }
             return false;
         }
+
     }
 }
