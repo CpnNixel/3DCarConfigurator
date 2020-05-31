@@ -15,5 +15,8 @@ namespace _3DCarConfigurator.Models
         public List<Detail> Details { get; set; }
         public string DetailsString { get; set; }
 
+        public string ImgPath { get; set; }
+        public string Model3dPath { get; set; }
+
     }
 }
