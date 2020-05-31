@@ -29,6 +29,7 @@ namespace _3DCarConfigurator.Controllers
             {
                 ApplicationUser user = new ApplicationUser { Email = model.Email, UserName = model.Email};
                 var result = await _userManager.CreateAsync(user, model.Password);
+                await _userManager.AddToRoleAsync(user, "user");
                 if (result.Succeeded)
                 {
                     return RedirectToAction("Index");
