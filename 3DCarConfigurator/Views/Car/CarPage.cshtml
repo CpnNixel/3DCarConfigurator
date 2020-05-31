@@ -21,13 +21,11 @@
 <div class="configurations">
     <div class="details">
         <div class="colors">
-            <div class="colorHeader">Color:</div>
-            @foreach (var config in Model.Configs)
-            {
+            <div class="colorHeader">Color:</div>            
 
-                @foreach (var detail in config.Details.Where(x => x.Category == "Color"))
+                @foreach (var detail in Model.Details.Where(x => x.Category == "Color"))
                 {
-                    if (config.Id == Model.Car.CurrentConfigurationId)
+                    if (Model.PickedDetails.Contains(detail.Id))
                     {
                         <div class="color selected" style=" background: @detail.Name;" data-detailId="@detail.Id" asp-for="color"></div>
                     }
@@ -38,15 +36,14 @@
 
                 }
 
-            }
+            
         </div>
         <div class="wheels">
-            @foreach (var config in Model.Configs)
-            {
+           
 
-                @foreach (var detail in config.Details.Where(x => x.Category == "Wheels"))
+                @foreach (var detail in Model.Details.Where(x => x.Category == "Wheels"))
                 {
-                    if (config.Id == Model.Car.CurrentConfigurationId)
+                    if (Model.PickedDetails.Contains(detail.Id))
                     {
                         <p><input type="radio" name="Wheels" data-detailId="@detail.Id" checked />@detail.Name</p>
                     }
@@ -56,7 +53,7 @@
                     }
                 }
 
-            }
+            
         </div>
     </div>
 </div>
@@ -75,7 +72,7 @@
             configurationDetails += "," + element.dataset.detailid;
         })
 
-        document.location.replace("~../../../SetLike/" + @Model.Car.Id + "," + configurationDetails);
+        document.location.replace("../../Car/SetLike/" + @Model.Car.Id + "," + configurationDetails);
 
     };
 </script>
