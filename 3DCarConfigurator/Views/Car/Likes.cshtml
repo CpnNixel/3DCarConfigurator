@@ -1,8 +1,27 @@
-﻿
+﻿@model _3DCarConfigurator.ViewModels.LikesViewModel
+
 @{
     ViewData["Title"] = "Likes";
 }
 
+
 <h1>Likes</h1>
 
-
+<div class="cars">
+    @for(int i = 0; i < Model.Cars.Count(); i++)
+       
+    {
+        <div class="car">
+            <img src="~/img/@Model.Configurations[i].ImgPath" width="350" height="200" /><br />
+            <div class="description">
+                <span class="carName">
+                    <b>Name:</b> @Model.Cars[i].Name
+                </span><br />
+                <span class="carPrice">
+                    <b>Price:</b> @Model.Cars[i].CarPrice
+                </span>
+                <a href="OpenLiked/@Model.Configurations[i].Id">Open page</a>
+            </div>
+        </div>
+    }
+</div>

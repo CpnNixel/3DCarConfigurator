@@ -6,6 +6,8 @@ using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 using _3DCarConfigurator.Models;
 using _3DCarConfigurator.Data;
+using _3DCarConfigurator.ViewModels;
+
 
 namespace _3DCarConfigurator.Controllers
 {
@@ -61,7 +63,7 @@ namespace _3DCarConfigurator.Controllers
                     }
                 }
             }
-            string[] pickedDet = db.Configurations.Where(x => x.Id == cfgViewModel.Car.CurrentConfigurationId).First().DetailsString.Split(',');
+            string[] pickedDet = db.Configurations.Where(x => x.Id == cfgViewModel.Car.CurrentConfigurationId).FirstOrDefault().DetailsString.Split(',');
             cfgViewModel.PickedDetails = new List<int>();
             foreach (var item in pickedDet)
             {
@@ -79,7 +81,7 @@ namespace _3DCarConfigurator.Controllers
 
             Configuration config = db.Configurations.Where(x => x.DetailsString == configDetails).Where(x => x.CarId == carId).FirstOrDefault();
             Car car = db.Cars.Where(x => x.Id == carId).FirstOrDefault();
-            ApplicationUser user = db.Users.Where(x => x.Email == User.Identity.Name).First();
+            ApplicationUser user = db.Users.Where(x => x.Email == User.Identity.Name).FirstOrDefault();
 
             if (config == null)
             {
@@ -91,7 +93,7 @@ namespace _3DCarConfigurator.Controllers
             } else
             {
                 car.CurrentConfigurationId = config.Id;
-                
+
             }
             int confId = car.CurrentConfigurationId;
 
@@ -111,6 +113,38 @@ namespace _3DCarConfigurator.Controllers
 
             db.SaveChanges();
             return Redirect("/Car/CarPage/" + carId.ToString());
+        }
+
+        public IActionResult Likes()
+        {
+            LikesViewModel lvm = new LikesViewModel();
+
+            List<Car> Cars = new List<Car>();
+            List<Configuration> Configurations = new List<Configuration>();
+
+            List<string> configurationIds = new List<string>(db.Users.Where(x => x.Email == User.Identity.Name).FirstOrDefault().LikedString.Split(','));
+
+            foreach (var id in configurationIds)
+            {
+                Configuration conf = db.Configurations.Where(x => x.Id == Convert.ToInt32(id)).FirstOrDefault();
+                Car car = db.Cars.Where(x => x.Id == conf.CarId).FirstOrDefault();
+                Cars.Add(car);
+                Configurations.Add(conf);
+            }
+
+            lvm.Configurations = Configurations;
+            lvm.Cars = Cars;
+
+            return View(lvm);
+        }
+
+        public RedirectResult OpenLiked(int id)
+        {
+            Configuration conf = db.Configurations.Where(x => x.Id == Convert.ToInt32(id)).FirstOrDefault();
+            Car car = db.Cars.Where(x => x.Id == conf.CarId).FirstOrDefault();
+            car.CurrentConfigurationId = id;
+            db.SaveChanges();
+            return Redirect("/Car/CarPage/" + car.Id.ToString());
         }
     }
 }

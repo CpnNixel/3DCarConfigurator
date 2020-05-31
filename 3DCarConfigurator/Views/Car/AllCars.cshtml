@@ -1,13 +1,51 @@
 ﻿@model IEnumerable<_3DCarConfigurator.Models.Car>
 @{
     ViewData["Title"] = "Cars";
+    List<string> models = new List<string>();
+    int min = (int)Model.First().CarPrice;
+    int max = (int)Model.First().CarPrice;
+
+    foreach(var car in Model)
+    {
+        if(min > car.CarPrice)
+        {
+            min = (int)car.CarPrice;
+        } else if(max < car.CarPrice)
+        {
+            max = (int)car.CarPrice;
+        }
+    }
 }
 
+
+<link rel="stylesheet" href="~/css/Cars.css" />
 <h1>Cars</h1>
-<div class="cars">
+<div class="sort">
     @foreach (var car in Model)
     {
-        <div class="car">
+        @if (!models.Contains(car.Name.Split(" ")[0]))
+        {
+            <p><input type="checkbox" name="Mark" checked value="@car.Name.Split(" ")[0]" class="checkbox"/>@car.Name.Split(" ")[0]</p>
+
+            models.Add(car.Name.Split(" ")[0]);
+        }
+
+    }
+
+    <p><input type="checkbox" name="Mark" checked value="Audi" class="checkbox" />Audi</p>
+
+    <input type="number" value="@min" min="@min" max="@max" id="min"/>
+    <input type="number" value="@max" min="@min" max="@max" id="max"/>
+    <br />
+    <div id="btn">Click</div>
+
+</div>
+<div class="cars">
+    
+
+    @foreach (var car in Model)
+    {
+        <div class="car"  data-name="@car.Name.Split(" ")[0]" data-price="@car.CarPrice">
             <img src="~/img/@car.PathToModel" width="350" height="200" /><br />
             <div class="description">
                 <span class="carName">
@@ -21,3 +59,28 @@
         </div>
     }
 </div>
+
+<script>
+    document.querySelector("#btn").onclick = function () {
+        var cars = document.querySelectorAll(".car");
+        var checked = document.querySelectorAll(".checkbox");
+        var marks = [];
+        var min = document.querySelector("#min").value;
+        var max = document.querySelector("#max").value;
+        
+
+        checked.forEach((el) => {
+            if (el.checked) {
+                marks.push(el.value);
+            }
+        });
+        cars.forEach((el) => {
+            if (!marks.includes(el.dataset.name) || (el.dataset.price > max && el.dataset.price < min)) {
+                el.style.display = "none";
+
+            } else if (marks.includes(el.dataset.name) || (el.dataset.price < max && el.dataset.price > min)) {
+                el.style.display = "inline-block";
+            }
+        });
+    };
+</script>
