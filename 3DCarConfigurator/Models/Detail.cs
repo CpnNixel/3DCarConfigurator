@@ -6,12 +6,16 @@ namespace _3DCarConfigurator.Models
     public class Detail
     {
         public int Id { get; set; }
+
         [Required(ErrorMessage = "Detail name must be provided")]
         public string Name { get; set; }
+
         [Required(ErrorMessage = "Category must be provided")]
         public string Category { get; set; }
+
         [DataType(DataType.Currency)]
-        public float DetailPrice { get ; set; }
+        public float DetailPrice { get; set; }
+
         public bool ChangeName(string name)
         {
             if (!String.IsNullOrWhiteSpace(name))
