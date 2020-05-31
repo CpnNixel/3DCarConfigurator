@@ -238,6 +238,9 @@ namespace _3DCarConfigurator.Data.Migrations
                     b.Property<string>("PathToModel")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("PathToPicture")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Cars");
@@ -257,9 +260,6 @@ namespace _3DCarConfigurator.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("DetailsString")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PathToPicture")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
