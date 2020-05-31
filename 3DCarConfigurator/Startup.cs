@@ -36,18 +36,18 @@ namespace _3DCarConfigurator
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-/*
+
             services.AddIdentity<ApplicationUser, IdentityRole>()
               .AddEntityFrameworkStores<ApplicationDbContext>()
-              .AddDefaultTokenProviders();*/
-
+              .AddDefaultTokenProviders();
+/*
             services.AddDefaultIdentity<ApplicationUser>(options =>
             {
                 options.SignIn.RequireConfirmedAccount = true;
             })
                .AddRoles<IdentityRole>()
-               .AddEntityFrameworkStores<ApplicationDbContext>();
-
+               .AddEntityFrameworkStores<ApplicationDbContext>();*/
+            
             services.AddScoped<IRepository<Car>, SqlCarRepository>();
             services.AddScoped<IRepository<Detail>, SqlDetailRepository>();
             services.AddScoped<IRepository<Configuration>, SqlConfigurationRepository>();

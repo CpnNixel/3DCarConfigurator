@@ -285,7 +285,8 @@ namespace _3DCarConfigurator.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("ConfigurationId")
-                  .HasColumnType("int");
+                        .HasColumnType("int");
+
                     b.Property<float>("DetailPrice")
                         .HasColumnType("real");
 
@@ -294,6 +295,7 @@ namespace _3DCarConfigurator.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
                     b.HasIndex("ConfigurationId");
 
                     b.ToTable("Details");
@@ -362,12 +364,13 @@ namespace _3DCarConfigurator.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
+
             modelBuilder.Entity("_3DCarConfigurator.Models.Detail", b =>
-            {
-                b.HasOne("_3DCarConfigurator.Models.Configuration", null)
-                    .WithMany("Details")
-                    .HasForeignKey("ConfigurationId");
-            });
+                {
+                    b.HasOne("_3DCarConfigurator.Models.Configuration", null)
+                        .WithMany("Details")
+                        .HasForeignKey("ConfigurationId");
+                });
 #pragma warning restore 612, 618
         }
     }
