@@ -28,7 +28,30 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Cars">Cars</a>
                         </li>
-                    </ul>
+
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            @if (User.IsInRole("admin") || User.IsInRole("master_admin"))
+                            {
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
+                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Manage
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                        <a class="dropdown-item" asp-controller="Users" asp-action="Index"> 
+                                            Users
+                                        </a>
+                                        <a class="dropdown-item" asp-controller="Administration" asp-action="ListRoles">
+                                            Roles
+                                        </a>
+                                    </div>
+                                </li>
+                                }
+                            }
+
+
+                        </ul>
                 </div>
             </div>
         </nav>

@@ -17,6 +17,7 @@ using _3DCarConfigurator.Models;
 using System.Net;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Options;
 
 namespace _3DCarConfigurator
 {
@@ -36,15 +37,17 @@ namespace _3DCarConfigurator
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+              .AddEntityFrameworkStores<ApplicationDbContext>()
+              .AddDefaultTokenProviders();
+/*
             services.AddDefaultIdentity<ApplicationUser>(options =>
-            { 
+            {
                 options.SignIn.RequireConfirmedAccount = true;
-/*                options.SignIn.RequireConfirmedEmail = true;*/
             })
-                .AddRoles<IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>();
-
-        
+               .AddRoles<IdentityRole>()
+               .AddEntityFrameworkStores<ApplicationDbContext>();*/
+            
             services.AddScoped<IRepository<Car>, SqlCarRepository>();
             services.AddScoped<IRepository<Detail>, SqlDetailRepository>();
             services.AddScoped<IRepository<Configuration>, SqlConfigurationRepository>();
