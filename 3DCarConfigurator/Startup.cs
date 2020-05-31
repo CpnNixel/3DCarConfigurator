@@ -33,25 +33,28 @@ namespace _3DCarConfigurator
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddTransient<IPasswordValidator<ApplicationUser>,
+                CustomPasswordValidator>(serv => new CustomPasswordValidator(6));
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentity<ApplicationUser, IdentityRole>()
-              .AddEntityFrameworkStores<ApplicationDbContext>()
-              .AddDefaultTokenProviders();
-/*
+            /*  services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();*/
+            
             services.AddDefaultIdentity<ApplicationUser>(options =>
             {
                 options.SignIn.RequireConfirmedAccount = true;
             })
-               .AddRoles<IdentityRole>()
-               .AddEntityFrameworkStores<ApplicationDbContext>();*/
-            
-            services.AddScoped<IRepository<Car>, SqlCarRepository>();
+           .AddRoles<IdentityRole>()
+           .AddEntityFrameworkStores<ApplicationDbContext>(); 
+
+         services.AddScoped<IRepository<Car>, SqlCarRepository>();
             services.AddScoped<IRepository<Detail>, SqlDetailRepository>();
             services.AddScoped<IRepository<Configuration>, SqlConfigurationRepository>();
-
          
             services.AddControllersWithViews();
             services.AddRazorPages();
