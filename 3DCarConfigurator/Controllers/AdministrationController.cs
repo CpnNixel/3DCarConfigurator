@@ -23,6 +23,14 @@ namespace _3DCarConfigurator.Controllers
         public UserManager<ApplicationUser> UserManager { get; }
 
         [HttpGet]
+        public IActionResult ListUsers()
+        {
+            var users = UserManager.Users;
+            return View(users);
+        }
+
+
+        [HttpGet]
         public IActionResult CreateRole()
         {
             return View();

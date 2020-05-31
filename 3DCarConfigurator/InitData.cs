@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using _3DCarConfigurator.Data;
+using _3DCarConfigurator.Models;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace _3DCarConfigurator
@@ -79,8 +80,8 @@ namespace _3DCarConfigurator
                                 context.Details.Where(x => x.Name == "18 radius").FirstOrDefault()
                             }*/
 
-                            DetailsString = context.Details.Where(x => x.Name == "White").FirstOrDefault().Id.ToString() + ", " +
-                            context.Details.Where(x => x.Name == "18 radius").FirstOrDefault().Id.ToString()
+                            DetailsString = (context.Details.Where(x => x.Name == "White").FirstOrDefault().Id.ToString() + "," +
+                            context.Details.Where(x => x.Name == "18 radius").FirstOrDefault().Id.ToString())
                         },
                         new Models.Configuration
                         {
@@ -90,10 +91,13 @@ namespace _3DCarConfigurator
                                 context.Details.Where(x => x.Name == "Green").FirstOrDefault(),
                                 context.Details.Where(x => x.Name == "20 radius").FirstOrDefault()
                             }*/
-                            DetailsString = (context.Details.Where(x => x.Name == "Green").FirstOrDefault().Id.ToString() + ", " +
+                            DetailsString = (context.Details.Where(x => x.Name == "Green").FirstOrDefault().Id.ToString() + "," +
                             context.Details.Where(x => x.Name == "20 radius").FirstOrDefault().Id.ToString())
                         }
                     );
+                context.SaveChanges();
+
+                context.Cars.First().CurrentConfigurationId = context.Configurations.Where(x => x.CarId == context.Cars.First().Id).First().Id;
                 context.SaveChanges();
             }
         }
