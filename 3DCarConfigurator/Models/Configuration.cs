@@ -10,6 +10,8 @@ namespace _3DCarConfigurator.Models
         //[Required(ErrorMessage ="Car Id must be provided")]
         public int CarId { get; set; }
 
+        public string PathToPicture { get; set; }
+
         public List<Detail> Details { get; set; }
         public string DetailsString { get; set; }
     }
