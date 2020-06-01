@@ -16,6 +16,9 @@ namespace _3DCarConfigurator.Models
         //public Configuration CurrentConfiguration { get; set; }
         public List<Configuration> AvailableForBuyingConfigs { get; set; }
 
+        public string Description { get; set; }
+
+
         public bool AddConfig(Configuration configuration)
         {
             if (configuration != null && configuration.Id != CurrentConfigurationId)
