@@ -1,0 +1,10 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+<a class="btn btn-primary" asp-controller="AdminManage" asp-action="EditCar" asp-route-id="2"></a>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

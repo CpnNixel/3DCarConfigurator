@@ -51,9 +51,23 @@ namespace _3DCarConfigurator.Services
             }
         }
 
-        public bool Edit(Car item)
+        public bool Edit(Car car)
         {
-            throw new NotImplementedException();
+         var temp = _context.Cars
+                        .Where(x => x.Id == car.Id)
+                        .FirstOrDefault();
+            if(temp == null)
+            {
+                return false;
+            }
+            temp.Name = car.Name;
+            temp.CarPrice = car.CarPrice;
+            temp.CurrentConfigurationId = car.CurrentConfigurationId;
+            temp.PathToModel = car.PathToModel;
+            temp.AvailableForBuyingConfigs = car.AvailableForBuyingConfigs;
+
+            _context.SaveChanges();
+            return true;
         }
 
         public Car Get(int id)
@@ -73,6 +87,26 @@ namespace _3DCarConfigurator.Services
         public void Update(Car car)
         {
             _context.Entry(car).State = EntityState.Modified;
+        }
+
+        public bool UpdateFull(Car car)
+        {
+            var temp = _context.Cars
+                        .Where(x => x.Id == car.Id)
+                        .FirstOrDefault();
+            if(temp == null)
+            {
+                return false;
+            }
+            temp.Name = car.Name;
+            temp.CarPrice = car.CarPrice;
+            temp.CurrentConfigurationId = car.CurrentConfigurationId;
+            temp.PathToModel = car.PathToModel;
+            temp.AvailableForBuyingConfigs = car.AvailableForBuyingConfigs;
+
+            _context.Entry(car).State = EntityState.Modified;
+            _context.SaveChanges();
+            return true;
         }
 
         public void Save()
