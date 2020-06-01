@@ -7,7 +7,9 @@ using System.Threading.Tasks;
 using _3DCarConfigurator.Models;
 using _3DCarConfigurator.Data;
 using _3DCarConfigurator.ViewModels;
-
+using Org.BouncyCastle.Bcpg;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Org.BouncyCastle.Crypto.Tls;
 
 namespace _3DCarConfigurator.Controllers
 {
@@ -121,7 +123,6 @@ namespace _3DCarConfigurator.Controllers
 
             List<Car> Cars = new List<Car>();
             List<Configuration> Configurations = new List<Configuration>();
-
             List<string> configurationIds = new List<string>(db.Users.Where(x => x.Email == User.Identity.Name).FirstOrDefault().LikedString.Split(','));
 
             foreach (var id in configurationIds)
@@ -145,6 +146,82 @@ namespace _3DCarConfigurator.Controllers
             car.CurrentConfigurationId = id;
             db.SaveChanges();
             return Redirect("/Car/CarPage/" + car.Id.ToString());
+        }
+
+        public IActionResult Recommendations()
+        {
+            List<Car> RecommendCars = new List<Car>();
+            List<Configuration> RecommendConfigs = new List<Configuration>();
+            string[] arr = db.Users.Where(x => x.Email == User.Identity.Name).FirstOrDefault().LikedString.Split(',');
+
+            List<Configuration> LikedConfigs = new List<Configuration>();
+            foreach(var item in arr)
+            {
+                LikedConfigs.Add(db.Configurations.Where(x => x.Id == Convert.ToInt32(item)).FirstOrDefault());
+            }
+
+            Dictionary<int, int> details = new Dictionary<int, int>();
+            foreach(var conf in LikedConfigs)
+            {
+                string[] dets = conf.DetailsString.Split(',');
+                foreach(var det in dets)
+                {
+                    Detail detail = db.Details.Where(x => x.Id == Convert.ToInt32(det)).FirstOrDefault();
+                    
+                    if(detail != null)
+                    {
+                        if (details.ContainsKey(detail.Id))
+                        {
+                            details[detail.Id]++;
+                        } else
+                        {
+                            details[detail.Id] = 1;
+                        }
+                    }
+                }
+            }
+
+            List<int> colors = new List<int>();
+            List<int> wheels = new List<int>();
+
+            foreach (KeyValuePair<int, int> keyValue in details)
+            {
+                if(db.Details.Where(x => x.Id == keyValue.Key).FirstOrDefault().Category == "Color")
+                {
+                    for(int i = 0; i < keyValue.Value; i++)
+                    {
+                        colors.Add(keyValue.Key);
+                    }
+                } else if(db.Details.Where(x => x.Id == keyValue.Key).FirstOrDefault().Category == "Wheels")
+                {
+                    for (int i = 0; i < keyValue.Value; i++)
+                    {
+                        wheels.Add(keyValue.Key);
+                    }
+                }
+            }
+
+            Random rand = new Random();
+            int colorId = colors[rand.Next(0, colors.Count)];
+            int wheelId = wheels[rand.Next(0, wheels.Count)];
+            List<Configuration> configs = db.Configurations.ToList();
+            foreach(var conf in configs)
+            {
+                List<string> det = new List<string>(conf.DetailsString.Split(','));
+                if (det.Contains(colorId.ToString()) || det.Contains(wheelId.ToString()))
+                {
+                    RecommendCars.Add(db.Cars.Where(x => x.Id == conf.CarId).FirstOrDefault());
+                    RecommendConfigs.Add(conf);
+                }
+            }
+
+            LikesViewModel lvm = new LikesViewModel
+            {
+                Cars = RecommendCars,
+                Configurations = RecommendConfigs
+            };
+
+            return View(lvm);
         }
     }
 }
