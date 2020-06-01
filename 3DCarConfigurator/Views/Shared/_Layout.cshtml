@@ -28,12 +28,17 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Car" asp-action="AllCars">Cars</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Car" asp-action="Likes">Likes</a>
-                        </li>
 
                         @if (User.Identity.IsAuthenticated)
                         {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Car" asp-action="Likes">Likes</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Car" asp-action="Recommendations">Recommendations</a>
+                            </li>
+
                             @if (User.IsInRole("admin") || User.IsInRole("master_admin"))
                             {
                                 <li class="nav-item dropdown">
@@ -42,7 +47,7 @@
                                         Manage
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                        <a class="dropdown-item" asp-controller="Users" asp-action="Index"> 
+                                        <a class="dropdown-item" asp-controller="Users" asp-action="Index">
                                             Users
                                         </a>
                                         <a class="dropdown-item" asp-controller="Administration" asp-action="ListRoles">
@@ -50,11 +55,11 @@
                                         </a>
                                     </div>
                                 </li>
-                                }
                             }
+                        }
 
 
-                        </ul>
+                    </ul>
                 </div>
             </div>
         </nav>
