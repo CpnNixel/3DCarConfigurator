@@ -12,6 +12,8 @@ namespace _3DCarConfigurator.Models
         public string Category { get; set; }
         [DataType(DataType.Currency)]
         public float DetailPrice { get ; set; }
+
+        public string pathToImg { get; set; }
         public bool ChangeName(string name)
         {
             if (!String.IsNullOrWhiteSpace(name))
