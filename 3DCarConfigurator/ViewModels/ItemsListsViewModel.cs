@@ -15,7 +15,8 @@ namespace _3DCarConfigurator.ViewModels
         public SelectList detailsList { get;set;}
         public SelectList configurationsList { get;set;}
 */
-        public int CarSelected { get; set; }
+        public int CarIdSelected {get;set;}
+        public Car CarSelected { get; set; }
         public int DetailSelected { get; set; }
         public int ConfigurationSelected { get; set; }
 }

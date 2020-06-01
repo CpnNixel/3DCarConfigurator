@@ -39,40 +39,31 @@ namespace _3DCarConfigurator.Controllers
             ViewBag.CarList = Car_Repo.GetAll().ToList();
             ViewBag.DetailList = Detail_Repo.GetAll().ToList();
             ViewBag.ConfigurationList = Config_Repo.GetAll().ToList();
-            ItemsListsViewModel items = new ItemsListsViewModel() { CarSelected = 1, ConfigurationSelected = 1, DetailSelected = 1 };
+            ItemsListsViewModel items = new ItemsListsViewModel() { CarIdSelected = 1, ConfigurationSelected = 1, DetailSelected = 1 };
             return View(itemsLists);
         }
         [HttpPost]
-        public IActionResult Index()
+        public IActionResult Index(int CarIdSelected)
         {
-
-            return View();
+            Car temp = (Car)Car_Repo.GetAll().FirstOrDefault(x => x.Id == CarIdSelected);
+            return EditCar(temp);
         }
 
         [HttpGet]
-        public IActionResult EditCar(int id)
+        public IActionResult EditCar(int CarIdSelected)
         {
-            Car kek = Car_Repo.GetAll().FirstOrDefault(x => x.Id == id);
+            Car kek = Car_Repo.GetAll().FirstOrDefault(x => x.Id == CarIdSelected);
             if (kek == null)
             {
-                ViewBag.ErrorMesage = $"Car with id {id} cannot be found";
+                ViewBag.ErrorMesage = $"Car with id {kek.Id} cannot be found";
                 return View("NotFound");
             }
 
             return View(kek);
         }
 
-        //ItemsListsViewModel
-        [HttpPost]
-        public IActionResult EditCar(ItemsListsViewModel vm)
-        {
-            int selected = vm.CarSelected;
 
-            return View(vm);
-        }
-
-
-        [HttpPost]
+     [HttpPost]
         public IActionResult EditCar(Car car)
         {
             Car kek = Car_Repo.GetAll().FirstOrDefault(x => x.Id == car.Id);
