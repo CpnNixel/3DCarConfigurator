@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using _3DCarConfigurator.Data;
+﻿using _3DCarConfigurator.Data;
 using _3DCarConfigurator.Models;
 using _3DCarConfigurator.Services;
-using Microsoft.AspNetCore.Identity;
+using _3DCarConfigurator.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace _3DCarConfigurator.Controllers
 {
@@ -33,9 +32,20 @@ namespace _3DCarConfigurator.Controllers
         public IRepository<Detail> Detail_Repo { get; }
         public IRepository<Configuration> Config_Repo { get; }
 
+        
         [HttpGet]
+        public IActionResult Index(ItemsListsViewModel itemsLists)
+        {
+            ViewBag.CarList = Car_Repo.GetAll().ToList();
+            ViewBag.DetailList = Detail_Repo.GetAll().ToList();
+            ViewBag.ConfigurationList = Config_Repo.GetAll().ToList();
+            ItemsListsViewModel items = new ItemsListsViewModel() { CarSelected = 1, ConfigurationSelected = 1, DetailSelected = 1 };
+            return View(itemsLists);
+        }
+        [HttpPost]
         public IActionResult Index()
         {
+
             return View();
         }
 
@@ -51,6 +61,17 @@ namespace _3DCarConfigurator.Controllers
 
             return View(kek);
         }
+
+        //ItemsListsViewModel
+        [HttpPost]
+        public IActionResult EditCar(ItemsListsViewModel vm)
+        {
+            int selected = vm.CarSelected;
+
+            return View(vm);
+        }
+
+
         [HttpPost]
         public IActionResult EditCar(Car car)
         {

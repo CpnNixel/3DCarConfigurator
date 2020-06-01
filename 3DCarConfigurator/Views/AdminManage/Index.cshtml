@@ -1,9 +1,50 @@
-﻿@{
-    ViewData["Title"] = "Index";
+﻿@model _3DCarConfigurator.ViewModels.ItemsListsViewModel
+@{
+    ViewData["Title"] = "Manage items";
 }
 
-<h1>Index</h1>
-<a class="btn btn-primary" asp-controller="AdminManage" asp-action="EditCar" asp-route-id="2"></a>
+@*<a class="btn btn-primary" asp-controller="AdminManage" asp-action="EditCar" asp-route-id="2"></a>
+*@
+<div class="container">
+    <p><strong>Note:</strong> The cards are displayed vertically on small screens (less than 576px):</p>
+    <div class="card-deck">
+        <div class="card bg-primary">
+            <div class="card-body text-center">
+                <strong class="card-header">Cars</strong>
+                <form asp-action="EditCar" asp-controller="AdminManage">
+                    <label class="select margin-bottom-15">
+                        @Html.DropDownListFor(x => x.CarSelected, new SelectList(ViewBag.CarList, "Id", "Name"),
+                       "Select Car", new { @class = "form-control" })
+                    </label>
+                    <div>
+                        <input type="submit" value="Save" />
+                    </div>
+                </form>
+                    <p class="card-text">Some text inside the first card</p>
+            </div>
+        </div>
+        <div class="card bg-warning">
+            <div class="card-body text-center">
+                <strong class="card-header">Details</strong>
+                <label class="select margin-bottom-15">
+                    @Html.DropDownListFor(x => x.DetailSelected, new SelectList(ViewBag.DetailList, "Id", "Name"),
+                   "Select Detail", new { @class = "form-control" })
+                </label>
+                <p class="card-text">Some text inside the second card</p>
+            </div>
+        </div>
+        <div class="card bg-success">
+            <div class="card-body text-center">
+                <strong class="card-header">Configurations</strong>
+                <label class="select margin-bottom-15">
+                    @Html.DropDownListFor(x => x.ConfigurationSelected, new SelectList(ViewBag.ConfigurationList, "Id", "DetailsString"), 
+                   "Select Configuration", new { @class = "form-control" })
+                </label>
+                <p class="card-text">Some text inside the third card</p>
+            </div>
+        </div>
+    </div>
+</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
