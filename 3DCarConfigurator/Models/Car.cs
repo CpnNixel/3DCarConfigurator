@@ -13,7 +13,6 @@ namespace _3DCarConfigurator.Models
         public string PathToModel { get; set; }
         [DataType(DataType.Currency)]
         public float CarPrice { get; set; }
-        //public Configuration CurrentConfiguration { get; set; }
         public List<Configuration> AvailableForBuyingConfigs { get; set; }
 
         public string Description { get; set; }
