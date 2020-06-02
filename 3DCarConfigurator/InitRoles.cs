@@ -14,11 +14,14 @@ namespace _3DCarConfigurator
             {
                 await roleManager.CreateAsync(new IdentityRole("admin"));
             }
-            if (await roleManager.FindByNameAsync("user") == null || await roleManager.FindByNameAsync("user") == null)
+            if (await roleManager.FindByNameAsync("user") == null || await roleManager.FindByNameAsync("USER") == null)
             {
                 await roleManager.CreateAsync(new IdentityRole("user"));
             }
-
+            if (await roleManager.FindByNameAsync("master_admin") == null || await roleManager.FindByNameAsync("MASTER_ADMIN") == null)
+            {
+                await roleManager.CreateAsync(new IdentityRole("user"));
+            }
             ApplicationUser admin = new ApplicationUser { Email = adminEmail, UserName = adminEmail };
             IdentityResult result = await userManager.CreateAsync(admin, password);
             if (result.Succeeded)
