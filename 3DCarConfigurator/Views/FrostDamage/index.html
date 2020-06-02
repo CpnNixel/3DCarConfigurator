@@ -1,0 +1,78 @@
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <meta charset="UTF-8">
+        <title>Car Configurator</title>
+        <link rel="stylesheet" href="style.css">
+        <meta name="viewport" content="widht=device-widht, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <script src="script.js"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    </head>
+    <body class="main">
+        <header>
+            <div class="header-content">
+                <a href="/"><img src="images/logo.png"></a>
+                <div class="title-name">Car Configurator DELUXE</div>
+                <div class="dropdown-button">FrostDamage
+                    <div class="dropdown-content">
+                        <div class="dropdown-line">Личный кабинет</div>
+                        <div class="dropdown-line">Выход</div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="title-image"></div>
+        <div class="page">
+            <div class="filters">
+                <div class="title">Фильтры</div>
+                <div class="filter-group">
+                    <div class="title">Марка</div>
+                    <div><input type="checkbox" value="BMW">BMW</div>
+                    <div><input type="checkbox" value="Audi">Audi</div>
+                    <div><input type="checkbox" value="Mazda">Mazda</div>
+                </div>
+                <div class="filter-group">
+                    <div class="title">Тип машины</div>
+                    <div><input type='checkbox' value="Внедорожник">Внедорожник</div>
+                    <div><input type="checkbox" value="Легковая машина">Легковая машина</div>
+                    <div><input type="checkbox" value="Мотоцикл">Мотоцикл</div>
+                </div>
+                <button class="apply-filter button">Применить</button>
+            </div>
+            <div class="right">
+                <div class="car-title">Список всех машин:</div>
+                <div class="car-list">
+                    <a href="car.html"class="car">
+                        <div class="car-content">
+                            <div class="img" style="background-image: url('images/bmw-m5.png')"></div>
+                            <div class="title">BMW M5</div>
+                            <div class="description">Very fast brrrm</div>
+                        </div>
+                    </a>
+                    <div class="car">
+                        <div class="car-content">
+                            <div class="img" style="background-image: url('images/audi-r8.png')"></div>
+                            <div class="title">Audi R8</div>
+                            <div class="description">Very fast brrrm</div>
+                        </div>
+                    </div>
+                    <div class="car">
+                        <div class="car-content">
+                            <div class="img" style="background-image: url('images/mazda-rx7.png')"></div>
+                            <div class="title">Mazda RX-7</div>
+                            <div class="description">Very fast brrrm</div>
+                        </div>
+                    </div>
+                    <div class="car">
+                        <div class="car-content">
+                            <div class="img" style="background-image: url('images/dodge-viper.png')"></div>
+                            <div class="title">Dodge Viper</div>
+                            <div class="description">Very fast brrrm</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
