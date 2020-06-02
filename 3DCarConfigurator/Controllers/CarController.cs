@@ -32,9 +32,10 @@ namespace _3DCarConfigurator.Controllers
 
         public IActionResult CarPage(int id)
         {
-            Models.Car result = (from kek in db.Cars
+            Car result = db.Cars.Where(x => x.Id == id).FirstOrDefault();
+            /*Models.Car result = (from kek in db.Cars
                                  where kek.Id == id
-                                 select kek).FirstOrDefault();
+                                 select kek).FirstOrDefault();*/
             //db.Users.FirstOrDefault().LikedConfigs = db.Configurations.ToList();
             //db.SaveChanges();
             CarConfigViewModel cfgViewModel = new CarConfigViewModel { Car = result, Configs = db.Configurations.Where(x => x.CarId == result.Id) };
@@ -72,7 +73,22 @@ namespace _3DCarConfigurator.Controllers
                 cfgViewModel.PickedDetails.Add(Convert.ToInt32(item));
             }
 
+            cfgViewModel.CurrentConfig = db.Configurations.Where(x => x.Id == cfgViewModel.Car.CurrentConfigurationId).FirstOrDefault();
+
             return View(cfgViewModel);
+        }
+
+        public RedirectResult ChangeConfig(string id)
+        {
+            string[] arr = id.ToString().Split(",");
+            int carId = Convert.ToInt32(arr[0]);
+            string configDetails = string.Join(",", arr, 1, arr.Length - 1);
+
+            Configuration config = db.Configurations.Where(x => x.DetailsString == configDetails).Where(x => x.CarId == carId).FirstOrDefault();
+            db.Cars.Where(x => x.Id == carId).FirstOrDefault().CurrentConfigurationId = config.Id;
+            db.SaveChanges();
+
+            return Redirect("/Car/CarPage/" + carId.ToString());
         }
 
         public RedirectResult SetLike(string id)
