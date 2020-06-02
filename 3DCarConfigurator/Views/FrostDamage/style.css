@@ -1,0 +1,385 @@
+@keyframes enter {
+    0% {
+        transform: scale(0.01) rotate(0);
+    }
+    100% {
+        transform: scale(1) rotate(360deg);
+    }
+}
+
+@keyframes appear {
+    0% {
+        opacity: 0;
+        transform: translateY(-200px);
+    }
+    80% {
+        opacity: 0;
+        transform: translateY(-200px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+html {
+    background-color: white;
+}
+body {
+    margin: 0;
+    font-family: "Nunito", sans-serif;
+    background-color: #689CD3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+body.main {
+    transition: 0.5s all;
+    animation: enter 1.5s;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+header {
+    width: 100%;
+    background-color: #04376C;
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+    color: white;
+    top: 0;
+    position: fixed;
+    z-index: 20;
+    box-shadow: 0 0 42px 6px #000000;
+    
+}
+
+header .header-content {
+    display: flex;
+    flex-direction: row;
+    width: 1440px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.car {
+    text-decoration: none;
+}
+
+header .header-content img {
+    width: 70px;
+    border-radius: 50%;
+}
+
+header .header-content .title-name {
+    font-size: 48px;
+}
+
+header .header-content .dropdown-button {
+    font-size: 20px;
+    position: relative;
+    cursor: pointer;
+}
+
+header .header-content .dropdown-button .dropdown-content {
+    position: absolute;
+    padding: 20px;
+    top: 30px;
+    left: -33px;
+    background-color: white;
+    border: 1px solid #26517D;
+    border-radius: 8px;
+    color: #26517D;
+    width: 153px;
+    transition: 0.2s all;
+    opacity: 0;
+}
+
+.title-image {
+    width: 100%;
+    margin-top: 110px;
+    height: 500px;
+    background-image: url('images/title-image.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+body.main .title-image {
+    animation: appear 2s;
+}
+
+.page {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+body.main .page {
+    animation: appear 2s;
+}
+
+header .header-content .dropdown-button .dropdown-content .dropdown-line:first-of-type {
+    padding-bottom: 5px;
+    border-bottom: 1px solid #4188D3;
+}
+
+header .header-content .dropdown-button .dropdown-content .dropdown-line:last-of-type {
+    padding-top: 5px;
+}
+
+.page .filters {
+    display: flex;
+    flex-direction: column;
+    background-color: #0083ca;
+    padding: 20px;
+    min-width: 150px;
+    border-right: 2px solid #0D58A6;
+    color: white;
+}
+
+.page .filters > .title {
+    font-size: 24px;
+}
+
+.page .filters .filter-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.page .filters .filter-group .title {
+    font-size: 20px;
+    line-height: 1;
+    margin-bottom: 20px;
+}
+
+.page .filters .filter-group .title {
+    margin-top: 20px;
+}
+
+.page .filters .filter-group input {
+    margin-right: 5px;
+}
+
+.page .car-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    width: 100%;
+    height: 510px;
+    overflow: auto;
+}
+
+.page .car-list .car {
+    flex-basis: 33%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.page .car-list .car .img {
+    width: 200px;
+    height: 150px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.page > .right {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+}
+
+.page .car-list .car .car-content {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    align-items: center;
+}
+
+.page .car-list .car .car-content .title {
+    font-size: 20px;
+}
+
+.page .car-list .car .car-content .description {
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+.page .right .car-title {
+    font-size: 40px;
+    color: white;
+    margin: 20px 0;
+}
+
+.page .filters .apply-filter.button {
+    border: 0;
+    background: #04376C;
+    color: white;
+    padding: 10px 20px;
+    margin-top: 20px;
+    border-radius: 14px;
+    font-size: 20px;
+}
+
+body > .car {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    margin-top: 50px;
+    padding-bottom: 100px;
+}
+
+body > .car .first-line {
+    width: 1440px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+body > .car > .car-title {
+    font-size: 42px;
+}
+
+body > .car .model-3d {
+    width: 600px;
+    background-color: #5353ff;
+    height: 600px;
+    margin-top: 79px;
+}
+
+body > .car .modifications {
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+    align-items: center;
+}
+
+body > .car .modifications .title {
+    font-size: 36px;
+    margin-bottom: 30px;
+}
+
+body > .car .modifications .modification-list {
+    display: flex;
+    flex-direction: column;
+    height: 538px;
+    background-color: #3876b7;
+    width: calc(100% - 62px);
+    overflow: auto;
+    padding: 30px;
+    border: 1px solid white;
+}
+
+body > .car .modifications .modification-list .modification {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+body > .car .modifications .modification-list .modification:not(:last-of-type) {
+    margin-bottom: 40px;
+}
+
+body > .car .modifications .modification-list .modification .right {
+    margin-left: 20px;
+}
+
+body > .car .modifications .modification-list .modification .right .name {
+    font-size: 24px;
+}
+
+body > .car .modifications .modification-list .modification .right .description {
+    font-size: 20px;
+}
+
+body > .car .second-line {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 1440px;
+}
+
+body > .car .second-line .installed-modifications {
+    width: 538px;
+    display: flex;
+    flex-direction: column;
+    height: 240px;
+    padding: 30px;
+    border: 1px solid white;
+    background-color: #3876b7;
+    overflow: auto;
+}
+
+body > .car .second-line .installed-modifications .modification {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+body > .car .second-line .installed-modifications .modification .right {
+    margin-left: 20px;
+}
+
+body > .car .second-line .installed-modifications .modification:not(:last-of-type) {
+    margin-bottom: 30px;
+}
+
+body > .car .second-line .left {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+body > .car .second-line .left .title {
+    font-size: 36px;
+    margin-bottom: 20px;
+    margin-top: 40px;
+}
+
+body > .car .second-line .car-description {
+    margin-top: 50px;
+    font-size: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+body > .car .second-line .car-description .title {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+@media screen and (max-width: 1500px)
+{
+    header .header-content {
+        width: 1024px;
+    }
+    body > .car .first-line {
+        width: 1024px;
+    }
+    body > .car .first-line .model-3d {
+        width: 500px;
+        height: 500px;
+    }
+    body > .car .modifications {
+        width: 500px;
+    }
+    body > .car .modifications .modification-list {
+        height: 438px;
+    }
+    body > .car .second-line {
+        width: 1024px;
+    }
+}
