@@ -1,23 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.EntityFrameworkCore;
 using _3DCarConfigurator.Data;
+using _3DCarConfigurator.Models;
+using _3DCarConfigurator.Services;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using _3DCarConfigurator.Services;
-using _3DCarConfigurator.Models;
-using System.Net;
-using Microsoft.AspNetCore.Mvc.Authorization;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.Extensions.Options;
 
 namespace _3DCarConfigurator
 {
@@ -33,29 +23,23 @@ namespace _3DCarConfigurator
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddTransient<IPasswordValidator<ApplicationUser>,
                 CustomPasswordValidator>(serv => new CustomPasswordValidator(6));
 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-
-            /*  services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders();*/
-            
             services.AddDefaultIdentity<ApplicationUser>(options =>
             {
                 options.SignIn.RequireConfirmedAccount = false;
             })
            .AddRoles<IdentityRole>()
-           .AddEntityFrameworkStores<ApplicationDbContext>(); 
+           .AddEntityFrameworkStores<ApplicationDbContext>();
 
-         services.AddScoped<IRepository<Car>, SqlCarRepository>();
+            services.AddScoped<IRepository<Car>, SqlCarRepository>();
             services.AddScoped<IRepository<Detail>, SqlDetailRepository>();
             services.AddScoped<IRepository<Configuration>, SqlConfigurationRepository>();
-         
+
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
@@ -63,7 +47,6 @@ namespace _3DCarConfigurator
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
