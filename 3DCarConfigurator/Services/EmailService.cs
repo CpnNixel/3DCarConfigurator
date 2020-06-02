@@ -12,7 +12,7 @@ namespace _3DCarConfigurator.Services
         {
             var emailMessage = new MimeMessage();
  
-            emailMessage.From.Add(new MailboxAddress("3DCarConfigurator Administration", "login@yandex.ru"));
+            emailMessage.From.Add(new MailboxAddress("3DCarConfigurator Administration", "3DCarConfigurator@gmail.com"));
             emailMessage.To.Add(new MailboxAddress("", email));
             emailMessage.Subject = subject;
             emailMessage.Body = new TextPart(MimeKit.Text.TextFormat.Html)
@@ -23,7 +23,7 @@ namespace _3DCarConfigurator.Services
             using (var client = new SmtpClient())
             {
                 await client.ConnectAsync("smtp.gmail.com", 25, false);
-                await client.AuthenticateAsync("nkisel549@gmail.com", "password");
+                await client.AuthenticateAsync("3DCarConfigurator@gmail.com", "xkT-Ppg-4hz-KtC");
                 await client.SendAsync(emailMessage);
  
                 await client.DisconnectAsync(true);
