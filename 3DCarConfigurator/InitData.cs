@@ -13,8 +13,11 @@ namespace _3DCarConfigurator
     {
         public static void Initialize(ApplicationDbContext context)
         {
+            
             if (!context.Cars.Any())
             {
+                
+
                 context.Cars.AddRange(
                         new Models.Car
                         {
@@ -44,6 +47,7 @@ namespace _3DCarConfigurator
                 context.SaveChanges();
 
             }
+            
             if (!context.Details.Any())
             {
                 context.Details.AddRange(
@@ -86,8 +90,17 @@ namespace _3DCarConfigurator
                     );
                 context.SaveChanges();
             }
+
+            
             if (!context.Configurations.Any())
             {
+
+                var DetailsString = context.Details.Where(x => Convert.ToInt32(x.Id) == 2).FirstOrDefault();
+                return; /*.Id.ToString() + "," +
+                            context.Details.Where(x => x.Name == "18 radius").FirstOrDefault().Id.ToString()
+                dsdsds*/
+                    return;
+                
                 context.Configurations.AddRange(
                         new Models.Configuration
                         {
@@ -211,7 +224,7 @@ namespace _3DCarConfigurator
             context.SaveChanges();
             context.Cars.Where(x => x.Name == "BMW").First().CurrentConfigurationId = context.Configurations.Where(x => x.CarId == context.Cars.Where(x => x.Name == "BMW").First().Id).First().Id;
             context.SaveChanges();*/
-            
-        }
+
+            }
     }
 }

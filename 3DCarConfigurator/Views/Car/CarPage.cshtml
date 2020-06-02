@@ -85,5 +85,25 @@
             document.location.replace("../../Car/ChangeConfig/" + @Model.Car.Id + "," + configurationDetails);
         };
     })
+
+    document.querySelectorAll("input[type=checkbox]").forEach((element) => {
+        element.onchange = function () {
+            colors.forEach((elem) => {
+                elem.className = "color"
+            })
+            element.className = "color selected"
+            var configurationDetails = "";
+
+            var pickedColor = document.querySelector(".selected");
+            configurationDetails = pickedColor.dataset.detailid;
+
+            var checkedList = document.querySelectorAll("input:checked");
+            checkedList.forEach((element) => {
+                configurationDetails += "," + element.dataset.detailid;
+            })
+
+            document.location.replace("../../Car/ChangeConfig/" + @Model.Car.Id + "," + configurationDetails);
+        }
+    })
 </script>
 
