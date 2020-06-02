@@ -14,5 +14,6 @@ namespace _3DCarConfigurator.Models
 
         public List<int> PickedDetails { get; set; }
        
+        public Configuration CurrentConfig { get; set; }
     }
 }
