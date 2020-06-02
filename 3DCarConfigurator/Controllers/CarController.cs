@@ -38,6 +38,10 @@ namespace _3DCarConfigurator.Controllers
                                  select kek).FirstOrDefault();*/
             //db.Users.FirstOrDefault().LikedConfigs = db.Configurations.ToList();
             //db.SaveChanges();
+            if (result == null)
+            {
+                return View("NotFound");
+            }
             CarConfigViewModel cfgViewModel = new CarConfigViewModel { Car = result, Configs = db.Configurations.Where(x => x.CarId == result.Id) };
 
             foreach (var conf in cfgViewModel.Configs)

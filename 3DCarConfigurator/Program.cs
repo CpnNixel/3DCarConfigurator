@@ -15,7 +15,7 @@ namespace _3DCarConfigurator
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var host = CreateHostBuilder(args).Build();
             using (var scope = host.Services.CreateScope())
@@ -26,17 +26,17 @@ namespace _3DCarConfigurator
                     var context = services.GetRequiredService<ApplicationDbContext>();
                     InitData.Initialize(context);
                 //User data
-             /*   try
+               try
                 {
-                    var userManager = services.GetRequiredService<UserManager<User>>();
+                    var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
                     var rolesManager = services.GetRequiredService<RoleManager<IdentityRole>>();
-                    await RoleInitializer.InitializeAsync(userManager, rolesManager);
+                    await InitRoles.InitializeAsync(userManager, rolesManager);
                 }
                 catch (Exception ex)
                 {
                     var logger = services.GetRequiredService<ILogger<Program>>();
                     logger.LogError(ex, "An error occurred while seeding the database.");
-                }*/
+                }
             }
             host.Run();
         }

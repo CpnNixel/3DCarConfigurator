@@ -1,9 +1,5 @@
 ﻿using _3DCarConfigurator.Models;
 using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace _3DCarConfigurator
@@ -12,46 +8,28 @@ namespace _3DCarConfigurator
     {
         public static async Task InitializeAsync(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
         {
-            List<ApplicationUser> users_list = new List<ApplicationUser>(10)
+            string adminEmail = "admin@gmail.com";
+            string password = "12345678";
+            if (await roleManager.FindByNameAsync("admin") == null || await roleManager.FindByNameAsync("ADMIN") == null)
             {
-                new ApplicationUser { Email = "keker@gmail.com", UserName = "keker@gmail.com"},
-                new ApplicationUser { Email = "keker1@gmail.com", UserName = "keker1@gmail.com"},
-                new ApplicationUser { Email = "keker2@gmail.com", UserName = "keker2@gmail.com"},
-                new ApplicationUser { Email = "keker3@gmail.com", UserName = "keker3@gmail.com"},
-                new ApplicationUser { Email = "keker432@gmail.com", UserName = "keker432@gmail.com"},
-                new ApplicationUser { Email = "keker564@gmail.com", UserName = "keker564@gmail.com"},
-                new ApplicationUser { Email = "keke77@gmail.com", UserName = "keke77@gmail.com"},
-                new ApplicationUser { Email = "keker6@gmail.com", UserName = "keker6@gmail.com"},
-                new ApplicationUser { Email = "keker9@gmail.com", UserName = "keker9@gmail.com"},
-                new ApplicationUser { Email = "keker8@gmail.com", UserName = "keker8@gmail.com"},
-                new ApplicationUser { Email = "keker10@gmail.com", UserName = "keker10@gmail.com"},
-
-            };
-            foreach (var user in users_list)
-            {
-                IdentityResult result = await userManager.CreateAsync(user, CreatePassword());
-                await userManager.AddToRoleAsync(user, "user");
+                await roleManager.CreateAsync(new IdentityRole("admin"));
             }
-
-            users_list.Add(new ApplicationUser() { Email = "admin@admin.com", UserName = "admin@admin.com" });
-            IdentityResult result_admin = await userManager.CreateAsync(users_list.Last(), "_Aa123456");
-            if (result_admin.Succeeded)
+            if (await roleManager.FindByNameAsync("user") == null || await roleManager.FindByNameAsync("USER") == null)
             {
-                await userManager.AddToRoleAsync(users_list.Last(), "admin");
+                await roleManager.CreateAsync(new IdentityRole("user"));
             }
+            if (await roleManager.FindByNameAsync("master_admin") == null || await roleManager.FindByNameAsync("MASTER_ADMIN") == null)
+            {
+                await roleManager.CreateAsync(new IdentityRole("user"));
+            }
+            ApplicationUser admin = new ApplicationUser { Email = adminEmail, UserName = adminEmail };
+            IdentityResult result = await userManager.CreateAsync(admin, password);
+            if (result.Succeeded)
+            {
+                await userManager.AddToRoleAsync(admin, "admin");
+            }
+            await userManager.AddToRoleAsync(admin, "admin");
+
         }
-
-        public static string CreatePassword(int numberOfResults = 10, int minValue = 0, int maxValue = 9)
-        {
-            StringBuilder sb = new StringBuilder("");
-            Random rand = new Random();
-            for (int i = 0; i < numberOfResults; i++)
-            {
-                sb.Append(rand.Next(minValue, maxValue).ToString());
-            }
-
-            return sb.ToString();
-        }
-
     }
 }

@@ -11,43 +11,39 @@
         <div class="card bg-primary">
             <div class="card-body text-center">
                 <strong class="card-header">Cars</strong>
-                    <form method="get" asp-action="EditCar" asp-controller="AdminManage">
-            <label class="select margin-bottom-15">
-                @Html.DropDownListFor(x => x.CarIdSelected, new SelectList(ViewBag.CarList, "Id", "Name" ),
-                                "Select Car", new { @class = "form-control" })
-            </label>
-
-
-            <div>
-                <input type="submit" value="Save" />
-            </div>
-            </form>
+                <form method="get" asp-action="EditCar" asp-controller="AdminManage">
+                    <label class="select margin-bottom-15">
+                        @Html.DropDownListFor(x => x.ItemIdSelected, new SelectList(ViewBag.CarList, "Id", "Name"),
+                                        "Select Car", new { @class = "form-control" })
+                    </label>
+                    <div><input type="submit" class="btn btn-primary" value="Edit" /></div>
+                </form>
             <p class="card-text">Some text inside the first card</p>
         </div>
-@*
-                @foreach (var kek in ViewBag.CarList)
-                {
-                    <a class="btn btn-primary" asp-controller="AdminManage" asp-action="EditCar" asp-route-id="@kek.Id"></a>
-                }*@
-
             </div>
         <div class="card bg-warning">
             <div class="card-body text-center">
                 <strong class="card-header">Details</strong>
-                <label class="select margin-bottom-15">
-                    @Html.DropDownListFor(x => x.DetailSelected, new SelectList(ViewBag.DetailList, "Id", "Name"),
-                   "Select Detail", new { @class = "form-control" })
-                </label>
+                <form method="get" asp-action="EditDetail" asp-controller="AdminManage">
+                    <label class="select margin-bottom-15">
+                        @Html.DropDownListFor(x => x.ItemIdSelected, new SelectList(ViewBag.DetailList, "Id", "Name"),
+                     "Select Detail", new { @class = "form-control" })
+                    </label>
+                    <div><input type="submit"  class="btn btn-primary" value="Edit" /></div>
+                </form>
                 <p class="card-text">Some text inside the second card</p>
             </div>
         </div>
         <div class="card bg-success">
             <div class="card-body text-center">
                 <strong class="card-header">Configurations</strong>
-                <label class="select margin-bottom-15">
-                    @Html.DropDownListFor(x => x.ConfigurationSelected, new SelectList(ViewBag.ConfigurationList, "Id", "DetailsString"), 
-                   "Select Configuration", new { @class = "form-control" })
-                </label>
+                <form method="get" asp-action="EditConfiguration" asp-controller="AdminManage">
+                    <label class="select margin-bottom-15">
+                        @Html.DropDownListFor(x => x.ItemIdSelected, new SelectList(ViewBag.ConfigurationList, "Id", "DetailsString"),
+                  "Select Configuration", new { @class = "form-control" })
+                    </label>
+                    <div><input type="submit" class="btn btn-primary" value="Edit" /></div>
+                </form>
                 <p class="card-text">Some text inside the third card</p>
             </div>
         </div>
