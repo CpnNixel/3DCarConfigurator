@@ -47,12 +47,15 @@
         </div>
     </header>
     <div class="title-image">
-        <div class="links">
-            <a asp-area="" asp-controller="Car" asp-action="AllCars">All Cars</a>
-            <a asp-area="" asp-controller="Car" asp-action="Likes">Likes</a>
-            <a asp-area="" asp-controller="Car" asp-action="Recommendations">Recommendations</a>
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <div class="links">
+                <a asp-area="" asp-controller="Car" asp-action="AllCars">All Cars</a>
+                <a asp-area="" asp-controller="Car" asp-action="Likes">Likes</a>
+                <a asp-area="" asp-controller="Car" asp-action="Recommendations">Recommendations</a>
+            </div>
+        }
         </div>
-    </div>
   
 
     @RenderBody()
