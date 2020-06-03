@@ -79,7 +79,7 @@ namespace _3DCarConfigurator.Controllers
 
             cfgViewModel.CurrentConfig = db.Configurations.Where(x => x.Id == cfgViewModel.Car.CurrentConfigurationId).FirstOrDefault();
 
-            return View(cfgViewModel);
+            return View(cfgViewModel); 
         }
 
         public RedirectResult ChangeConfig(string id)
