@@ -28,7 +28,7 @@
 html {
     background-color: white !important;
 }
-body .row {
+body .row.auth {
     width: 100vw;
 }
 body {
@@ -113,16 +113,38 @@ header .header-content .dropdown-button {
     background-size: cover !important;
     background-position: center !important;
     background-repeat: no-repeat !important;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+    .title-image .links {
+        margin-left: 100px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+.title-image .links a {
+    color: white;
+    font-size: 24px;
+    text-shadow: 2px 2px #04376C;
+    border-bottom: 4px solid #04376C;
+    margin-bottom: 20px;
+    text-decoration: none!important;
 }
 
-body.main .title-image {
-    animation: appear 2s !important;
-}
+            body.main .title-image {
+                animation: appear 2s !important;
+            }
 
 .page {
     display: flex !important;
     flex-direction: row !important;
     width: 100% !important;
+}
+.row.kek {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
 }
 
 body.main .page {
@@ -285,7 +307,7 @@ body > .car {
         body > .car .modifications .modification-list {
             display: flex !important;
             flex-direction: column !important;
-            height: 538px !important;
+            height: 595px !important;
             background-color: #3876b7 !important;
             width: calc(100% - 62px) !important;
             overflow: auto !important;
@@ -428,4 +450,10 @@ body > .car {
 body > .car > .car-title.anim-run {
     transform: translateY(0) !important;
     opacity: 1 !important;
+}
+
+.columnModification{
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
 }

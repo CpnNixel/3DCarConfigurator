@@ -22,20 +22,10 @@
 
   <ItemGroup>
     <Content Remove="wwwroot\css\style.css" />
-    <Content Remove="wwwroot\img\audi-r8.png" />
-    <Content Remove="wwwroot\img\bmw-m5.jfif" />
-    <Content Remove="wwwroot\img\bmw-m5.png" />
-    <Content Remove="wwwroot\img\dodge-viper.PNG" />
-    <Content Remove="wwwroot\img\mazda-rx7.png" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="wwwroot\css\style.css" />
-    <None Include="wwwroot\img\audi-r8.png" />
-    <None Include="wwwroot\img\bmw-m5.jfif" />
-    <None Include="wwwroot\img\bmw-m5.png" />
-    <None Include="wwwroot\img\dodge-viper.PNG" />
-    <None Include="wwwroot\img\mazda-rx7.png" />
   </ItemGroup>
 
   <ItemGroup>

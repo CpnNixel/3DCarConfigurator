@@ -95,6 +95,18 @@ namespace _3DCarConfigurator.Controllers
             return Redirect("/Car/CarPage/" + carId.ToString());
         }
 
+        public string GetModel(string id)
+        {
+            string[] arr = id.ToString().Split(",");
+            int carId = Convert.ToInt32(arr[0]);
+            string configDetails = string.Join(",", arr, 1, arr.Length - 1);
+
+            Configuration config = db.Configurations.Where(x => x.DetailsString == configDetails).Where(x => x.CarId == carId).FirstOrDefault();
+    
+
+            return config.Model3dPath;
+        }
+
         public RedirectResult SetLike(string id)
         {
             string[] arr = id.ToString().Split(",");
@@ -240,6 +252,13 @@ namespace _3DCarConfigurator.Controllers
                 Cars = RecommendCars,
                 Configurations = RecommendConfigs
             };
+
+            while (lvm.Cars.Count() > 4)
+            {
+                int a = rand.Next(0, lvm.Cars.Count() - 1);
+                lvm.Cars.RemoveAt(a);
+                lvm.Configurations.RemoveAt(a);
+            }
 
             return View(lvm);
         }

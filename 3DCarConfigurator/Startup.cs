@@ -78,7 +78,7 @@ namespace _3DCarConfigurator
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Car}/{action=AllCars}/{id?}");
                 endpoints.MapRazorPages();
             });
         }

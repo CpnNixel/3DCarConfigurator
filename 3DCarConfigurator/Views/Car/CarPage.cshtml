@@ -17,35 +17,40 @@
 
                 <div class="modification">
                     <div class="colorHeader">Color:</div>
+                    <div class="columnModification">
 
-                    @foreach (var detail in Model.Details.Where(x => x.Category == "Color"))
-                {
-                    if (Model.PickedDetails.Contains(detail.Id))
-                    {
-                    <div class="color selected" style=" background: @detail.Name;" data-detailId="@detail.Id" asp-for="color"></div>
-                    }
-                    else
-                    {
-                    <div class="color" style=" background: @detail.Name;" data-detailId="@detail.Id" asp-for="color"></div>
-                    }
+                        @foreach (var detail in Model.Details.Where(x => x.Category == "Color"))
+                        {
+                            if (Model.PickedDetails.Contains(detail.Id))
+                            {
+                                <div class="color selected" style=" background: @detail.Name;" data-detailId="@detail.Id" asp-for="color"></div>
+                            }
+                            else
+                            {
+                                <div class="color" style=" background: @detail.Name;" data-detailId="@detail.Id" asp-for="color"></div>
+                            }
 
-                }
+                        }
+                    </div>
 
                 </div>
 
                 <div class="modification">
                     <div class="colorHeader">Wheels:</div>
-                    @foreach (var detail in Model.Details.Where(x => x.Category == "Wheels"))
-                {
-                    if (Model.PickedDetails.Contains(detail.Id))
-                    {
-                    <p><input type="radio" name="Wheels" data-detailId="@detail.Id" checked />@detail.Name</p>
-                    }
-                    else
-                    {
-                    <p><input type="radio" name="Wheels" data-detailId="@detail.Id" />@detail.Name</p>
-                    }
-                }
+                    <div class="columnModification">
+                        @foreach (var detail in Model.Details.Where(x => x.Category == "Wheels"))
+                        {
+                            if (Model.PickedDetails.Contains(detail.Id))
+                            {
+                                <p><input onclick="kek(this)" type="radio" name="Wheels" data-detailId="@detail.Id" checked />@detail.Name</p>
+                            }
+                            else
+                            {
+                                <p><input onclick="kek(this)" type="radio" name="Wheels" data-detailId="@detail.Id" />@detail.Name</p>
+                            }
+
+                        }
+                    </div>
                 </div>
             </div>
         </div>
@@ -98,16 +103,15 @@
                 configurationDetails += "," + element.dataset.detailid;
             })
 
-            document.location.replace("../../Car/ChangeConfig/" + @Model.Car.Id + "," + configurationDetails);
+
+            $.get('../../Car/GetModel/' + @Model.Car.Id + "," + configurationDetails).done(function (data) {
+                $('iframe').attr('src', data);
+            });
         };
     })
 
-    document.querySelectorAll("input[type=checkbox]").forEach((element) => {
-        element.onchange = function () {
-            colors.forEach((elem) => {
-                elem.className = "color"
-            })
-            element.className = "color selected"
+    function kek(el) {
+
             var configurationDetails = "";
 
             var pickedColor = document.querySelector(".selected");
@@ -118,8 +122,9 @@
                 configurationDetails += "," + element.dataset.detailid;
             })
 
-            document.location.replace("../../Car/ChangeConfig/" + @Model.Car.Id + "," + configurationDetails);
-        }
-    })
+            $.get('../../Car/GetModel/' + @Model.Car.Id + "," + configurationDetails).done(function (data) {
+                $('iframe').attr('src', data);
+            });
+    }
 </script>
 

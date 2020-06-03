@@ -28,16 +28,18 @@
                 {
                     <div><input type="checkbox" name="Mark" checked value="@car.Name.Split(" ")[0]" class="checkbox" />@car.Name.Split(" ")[0]</div>
 
-                 models.Add(car.Name.Split(" ")[0]);
+                    models.Add(car.Name.Split(" ")[0]);
                 }
 
             }
         </div>
         <div class="filter-group">
-            <div class="title">Тип машины</div>
-            <div><input type='checkbox' value="Внедорожник">Внедорожник</div>
-            <div><input type="checkbox" value="Легковая машина">Легковая машина</div>
-            <div><input type="checkbox" value="Мотоцикл">Мотоцикл</div>
+            <div class="title">Цена</div>
+            From:<br />
+            <input type="number" value="@min" min="@min" max="@max" id="min" /><br />
+            To:<br />
+            <input type="number" value="@max" min="@min" max="@max" id="max" />
+            <br />
         </div>
         <button class="apply-filter button" id="btnFil">Применить</button>
     </div>
@@ -46,11 +48,11 @@
         <div class="car-list">
             @foreach (var car in Model)
             {
-            <a href="CarPage/@car.Id" class="car" data-name="@car.Name.Split(" ")[0]" data-price="@car.CarPrice">
+            <a href="~/Car/CarPage/@car.Id" class="car car1" data-name="@car.Name.Split(" ")[0]" data-price="@car.CarPrice">
                 <div class="car-content">
                     <div class="img" style="background-image: url('../../../img/@car.PathToModel')"></div>
                     <div class="title">@car.Name</div>
-                    <div class="description">@car.CarPrice</div>
+                    <div class="description">@car.CarPrice$</div>
                 </div>
             </a>
             }
@@ -61,7 +63,7 @@
 
 <script>
     document.querySelector("#btnFil").onclick = function () {
-        var cars = document.querySelectorAll(".car");
+        var cars = document.querySelectorAll(".car1");
         var checked = document.querySelectorAll(".checkbox");
         var marks = [];
         var min = document.querySelector("#min").value;
