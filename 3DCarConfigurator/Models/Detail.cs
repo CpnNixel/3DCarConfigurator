@@ -11,7 +11,7 @@ namespace _3DCarConfigurator.Models
         [Required(ErrorMessage = "Category must be provided")]
         public string Category { get; set; }
         [DataType(DataType.Currency)]
-        public float DetailPrice { get ; set; }
+        public int DetailPrice { get ; set; }
 
         public string pathToImg { get; set; }
         public bool ChangeName(string name)

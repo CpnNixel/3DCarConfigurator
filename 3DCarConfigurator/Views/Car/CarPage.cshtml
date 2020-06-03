@@ -3,50 +3,71 @@
     ViewData["Title"] = "Car";
 }
 
-<link rel="stylesheet" href="~/css/CarPage.css" />
 
-<iframe width="650" height="500" allowfullscreen src="@Model.CurrentConfig.Model3dPath"></iframe>
-<!--<iframe width="1024" height="640" allowfullscreen src="https://cdn.soft8soft.com/AROAJSY2GOEHMOFUVPIOE:3ce9144239/applications/MBW_Red, 20, black/MBW_Red, 20, black.html"></iframe>-->
-
-<div class="configurations">
-    <div class="details">
-        <div class="colors">
-            <div class="colorHeader">Color:</div>            
-
-                @foreach (var detail in Model.Details.Where(x => x.Category == "Color"))
-                {
-                    if (Model.PickedDetails.Contains(detail.Id))
-                    {
-                        <div class="color selected" style=" background: @detail.Name;" data-detailId="@detail.Id" asp-for="color"></div>
-                    }
-                    else
-                    {
-                        <div class="color" style=" background: @detail.Name;" data-detailId="@detail.Id" asp-for="color"></div>
-                    }
-
-                }
-
-            
+<div class="car animate-block">
+    <div class="car-title animate-block">@Model.Car.Name</div>
+    <div class='first-line'>
+        <div class="model-3d">
+            <iframe width="600" height="600" allowfullscreen src="@Model.CurrentConfig.Model3dPath"></iframe>
         </div>
-        <div class="wheels">
-           
+        <div class="modifications">
+            <div class="title">Модификации</div>
+            <div class="modification-list">
 
-                @foreach (var detail in Model.Details.Where(x => x.Category == "Wheels"))
-                {
-                    if (Model.PickedDetails.Contains(detail.Id))
-                    {
-                        <p><input type="radio" name="Wheels" data-detailId="@detail.Id" checked />@detail.Name</p>
-                    }
-                    else
-                    {
-                        <p><input type="radio" name="Wheels" data-detailId="@detail.Id" />@detail.Name</p>
-                    }
-                }
 
-            
+                <div class="modification">
+                    <div class="colorHeader">Color:</div>
+                    <div class="columnModification">
+
+                        @foreach (var detail in Model.Details.Where(x => x.Category == "Color"))
+                        {
+                            if (Model.PickedDetails.Contains(detail.Id))
+                            {
+                                <div class="color selected" style=" background: @detail.Name;" data-detailId="@detail.Id" asp-for="color"></div>
+                            }
+                            else
+                            {
+                                <div class="color" style=" background: @detail.Name;" data-detailId="@detail.Id" asp-for="color"></div>
+                            }
+
+                        }
+                    </div>
+
+                </div>
+
+                <div class="modification">
+                    <div class="colorHeader">Wheels:</div>
+                    <div class="columnModification">
+                        @foreach (var detail in Model.Details.Where(x => x.Category == "Wheels"))
+                        {
+                            if (Model.PickedDetails.Contains(detail.Id))
+                            {
+                                <p><input onclick="kek(this)" type="radio" name="Wheels" data-detailId="@detail.Id" checked />@detail.Name</p>
+                            }
+                            else
+                            {
+                                <p><input onclick="kek(this)" type="radio" name="Wheels" data-detailId="@detail.Id" />@detail.Name</p>
+                            }
+
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="second-line">
+        <div class="car-description animate-block">
+            <div class="title">Описание</div>
+            <div class="description">@Model.Car.Description</div>
         </div>
     </div>
 </div>
+
+
+
+
+<link rel="stylesheet" href="~/css/CarPage.css" />
+
 
 <p id="like">LIKE</p>
 
@@ -82,8 +103,28 @@
                 configurationDetails += "," + element.dataset.detailid;
             })
 
-            document.location.replace("../../Car/ChangeConfig/" + @Model.Car.Id + "," + configurationDetails);
+
+            $.get('../../Car/GetModel/' + @Model.Car.Id + "," + configurationDetails).done(function (data) {
+                $('iframe').attr('src', data);
+            });
         };
     })
+
+    function kek(el) {
+
+            var configurationDetails = "";
+
+            var pickedColor = document.querySelector(".selected");
+            configurationDetails = pickedColor.dataset.detailid;
+
+            var checkedList = document.querySelectorAll("input:checked");
+            checkedList.forEach((element) => {
+                configurationDetails += "," + element.dataset.detailid;
+            })
+
+            $.get('../../Car/GetModel/' + @Model.Car.Id + "," + configurationDetails).done(function (data) {
+                $('iframe').attr('src', data);
+            });
+    }
 </script>
 

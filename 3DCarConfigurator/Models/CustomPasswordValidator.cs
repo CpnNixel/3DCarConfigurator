@@ -26,8 +26,8 @@ namespace _3DCarConfigurator.Models
                     Description = $"Минимальная длина пароля равна {RequiredLength}"
                 });
             }
-            string pattern = "^[0-9]+$";
-
+            string pattern = "^[0-9A-Za-z]+$";
+            
             if (!Regex.IsMatch(password, pattern))
             {
                 errors.Add(new IdentityError

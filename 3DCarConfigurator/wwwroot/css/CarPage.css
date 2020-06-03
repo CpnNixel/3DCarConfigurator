@@ -1,4 +1,4 @@
-﻿.car {
+﻿/*.car {
     width: 400px;
     height: 500px;
     display: inline-block;
@@ -16,7 +16,7 @@
     width: 400px;
     display: inline-block;
     float: right;
-}
+}*/
 .colors {
     height: 48px;
     line-height: 50px;
@@ -33,6 +33,7 @@
     vertical-align: top;
     margin-right: 30px;
 }
+   
 .selected {
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }

@@ -13,8 +13,11 @@ namespace _3DCarConfigurator
     {
         public static void Initialize(ApplicationDbContext context)
         {
+            
             if (!context.Cars.Any())
             {
+                
+
                 context.Cars.AddRange(
                         new Models.Car
                         {
@@ -44,6 +47,7 @@ namespace _3DCarConfigurator
                 context.SaveChanges();
 
             }
+            
             if (!context.Details.Any())
             {
                 context.Details.AddRange(
@@ -86,8 +90,11 @@ namespace _3DCarConfigurator
                     );
                 context.SaveChanges();
             }
+
+            
             if (!context.Configurations.Any())
             {
+                
                 context.Configurations.AddRange(
                         new Models.Configuration
                         {
@@ -211,7 +218,7 @@ namespace _3DCarConfigurator
             context.SaveChanges();
             context.Cars.Where(x => x.Name == "BMW").First().CurrentConfigurationId = context.Configurations.Where(x => x.CarId == context.Cars.Where(x => x.Name == "BMW").First().Id).First().Id;
             context.SaveChanges();*/
-            
-        }
+
+            }
     }
 }

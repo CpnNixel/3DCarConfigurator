@@ -1,0 +1,421 @@
+@keyframes enter {
+    0% {
+        transform: scale(0.01) rotate(0)!important;
+    }
+    100% {
+        transform: scale(1) rotate(360deg)!important;
+    }
+}
+
+@keyframes appear {
+    0% {
+        opacity: 0!important;
+        transform: translateY(-200px)!important;
+    }
+    80% {
+        opacity: 0!important;
+        transform: translateY(-200px)!important;
+    }
+    100% {
+        opacity: 1!important;
+        transform: translateY(0)!important;
+    }
+}
+
+html {
+    background-color: white!important;
+}
+body {
+    margin: 0!important;
+   asdasdasdasd
+    font-family: "Nunito", sans-serif!important;
+    background-color: #689CD3!important;
+    display: flex!important;
+    flex-direction: column!important;
+    align-items: center!important;
+}
+
+body.main {
+    transition: 0.5s all!important;
+    animation: enter 1.5s!important;
+    position: absolute!important;
+    top: 0!important;
+    left: 0!important;
+    width: 100%!important;
+}
+
+header {
+    width: 100%!important;
+    background-color: #04376C!important;
+    display: flex!important;
+    justify-content: center!important;
+    padding: 20px 0!important;
+    color: white!important;
+    top: 0!important;
+    position: fixed!important;
+    z-index: 20!important;
+    box-shadow: 0 0 42px 6px #000000!important;
+    
+}
+
+header .header-content {
+    display: flex!important;
+    flex-direction: row!important;
+    width: 1440px!important;
+    justify-content: space-between!important;
+    align-items: center!important;
+}
+
+.car {
+    text-decoration: none!important;
+}
+
+header .header-content img {
+    width: 70px!important;
+    border-radius: 50%!important;
+}
+
+header .header-content .title-name {
+    font-size: 48px!important;
+}
+
+header .header-content .dropdown-button {
+    font-size: 20px!important;
+    position: relative!important;
+    cursor: pointer!important;
+}
+
+header .header-content .dropdown-button .dropdown-content {
+    position: absolute!important;
+    padding: 20px!important;
+    top: 30px!important;
+    left: -33px!important;
+    background-color: white!important;
+    border: 1px solid #26517D!important;
+    border-radius: 8px!important;
+    color: #26517D!important;
+    width: 153px!important;
+    transition: 0.2s all!important;
+    opacity: 0!important;
+}
+
+.title-image {
+    width: 100% !important;
+    margin-top: 110px !important;
+    height: 500px !important;
+    background-image: url('~/img/title-image.jpg') !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+}
+
+body.main .title-image {
+    animation: appear 2s!important;
+}
+
+.page {
+    display: flex!important;
+    flex-direction: row!important;
+    width: 100%!important;
+}
+
+body.main .page {
+    animation: appear 2s!important;
+}
+
+header .header-content .dropdown-button .dropdown-content .dropdown-line:first-of-type {
+    padding-bottom: 5px!important;
+    border-bottom: 1px solid #4188D3!important;
+}
+
+header .header-content .dropdown-button .dropdown-content .dropdown-line:last-of-type {
+    padding-top: 5px!important;
+}
+
+.page .filters {
+    display: flex!important;
+    flex-direction: column!important;
+    background-color: #0083ca!important;
+    padding: 20px!important;
+    min-width: 150px!important;
+    border-right: 2px solid #0D58A6!important;
+    color: white!important;
+}
+
+.page .filters > .title {
+    font-size: 24px!important;
+}
+
+.page .filters .filter-group {
+    display: flex!important;
+    flex-direction: column!important;
+    align-items: flex-start!important;
+}
+
+.page .filters .filter-group .title {
+    font-size: 20px!important;
+    line-height: 1!important;
+    margin-bottom: 20px!important;
+}
+
+.page .filters .filter-group .title {
+    margin-top: 20px!important;
+}
+
+.page .filters .filter-group input {
+    margin-right: 5px!important;
+}
+
+.page .car-list {
+    display: flex!important;
+    flex-direction: row!important;
+    flex-wrap: wrap!important;
+    justify-content: flex-start!important;
+    width: 100%!important;
+    height: 510px!important;
+    overflow: auto!important;
+}
+
+.page .car-list .car {
+    flex-basis: 33%!important;
+    display: flex!important;
+    justify-content: center!important;
+    align-items: center!important;
+    margin-bottom: 40px!important;
+}
+
+.page .car-list .car .img {
+    width: 200px!important;
+    height: 150px!important;
+    background-size: contain!important;
+    background-position: center!important;
+    background-repeat: no-repeat!important;
+}
+
+.page > .right {
+    display: flex!important;
+    width: 100%!important;
+    flex-direction: column!important;
+    align-items: center!important;
+}
+
+.page .car-list .car .car-content {
+    display: flex!important;
+    flex-direction: column!important;
+    color: white!important;
+    align-items: center!important;
+}
+
+.page .car-list .car .car-content .title {
+    font-size: 20px!important;
+}
+
+.page .car-list .car .car-content .description {
+    font-size: 18px!important;
+    margin-top: 10px!important;
+}
+
+.page .right .car-title {
+    font-size: 40px!important;
+    color: white!important;
+    margin: 20px 0!important;
+}
+
+.page .filters .apply-filter.button {
+    border: 0!important;
+    background: #04376C!important;
+    color: white!important;
+    padding: 10px 20px!important;
+    margin-top: 20px!important;
+    border-radius: 14px!important;
+    font-size: 20px!important;
+}
+
+body > .car {
+    display: flex!important;
+    flex-direction: column!important;
+    align-items: center!important;
+    color: white!important;
+    margin-top: 50px!important;
+    padding-bottom: 100px!important;
+}
+
+body > .car .first-line {
+    width: 1440px!important;
+    display: flex!important;
+    flex-direction: row!important;
+    justify-content: space-between!important;
+    transition: 0.5s all!important;
+}
+
+body > .car > .car-title {
+    font-size: 42px!important;
+    transition: 0.5s all!important;
+    transform: translateY(-50vh)!important;
+    opacity: 0!important;
+}
+
+body > .car .model-3d {
+    width: 600px!important;
+    background-color: #5353ff!important;
+    height: 600px!important;
+    margin-top: 79px!important;
+    transition: 0.5s all!important;
+}
+
+body > .car .modifications {
+    display: flex!important;
+    flex-direction: column!important;
+    width: 600px!important;
+    transition: 0.5s all!important;
+    align-items: center!important;
+}
+
+body > .car .modifications .title {
+    font-size: 36px!important;
+    margin-bottom: 30px!important;
+}
+
+body > .car .modifications .modification-list {
+    display: flex!important;
+    flex-direction: column!important;
+    height: 538px!important;
+    background-color: #3876b7!important;
+    width: calc(100% - 62px)!important;
+    overflow: auto!important;
+    padding: 30px!important;
+    border: 1px solid white!important;
+}
+
+body > .car .modifications .modification-list .modification {
+    display: flex!important;
+    flex-direction: row!important;
+    align-items: center!important;
+}
+
+body > .car .modifications .modification-list .modification:not(:last-of-type) {
+    margin-bottom: 40px!important;
+}
+
+body > .car .modifications .modification-list .modification .right {
+    margin-left: 20px!important;
+}
+
+body > .car .modifications .modification-list .modification .right .name {
+    font-size: 24px!important;
+}
+
+body > .car .modifications .modification-list .modification .right .description {
+    font-size: 20px!important;
+}
+
+body > .car .second-line {
+    display: flex!important;
+    align-items: center!important;
+    flex-direction: row!important;
+    justify-content: space-between!important;
+    transition: 0.5s all!important;
+    width: 1440px!important;
+}
+
+body > .car .second-line .installed-modifications {
+    width: 538px!important;
+    display: flex!important;
+    flex-direction: column!important;
+    height: 240px!important;
+    padding: 30px!important;
+    border: 1px solid white!important;
+    background-color: #3876b7!important;
+    overflow: auto!important;
+}
+
+body > .car .second-line .installed-modifications .modification {
+    display: flex!important;
+    flex-direction: row!important;
+    margin-bottom: 20px!important;
+    align-items: center!important;
+}
+
+body > .car .second-line .installed-modifications .modification .right {
+    margin-left: 20px!important;
+}
+
+body > .car .second-line .installed-modifications .modification:not(:last-of-type) {
+    margin-bottom: 30px!important;
+}
+
+body > .car .second-line .left {
+    display: flex!important;
+    align-items: center!important;
+    flex-direction: column!important;
+}
+
+body > .car .second-line .left .title {
+    font-size: 36px!important;
+    margin-bottom: 20px!important;
+    margin-top: 40px!important;
+}
+
+body > .car .second-line .car-description {
+    margin-top: 50px!important;
+    font-size: 24px!important;
+    display: flex!important;
+    flex-direction: column!important;
+    align-items: center!important;
+}
+
+body > .car .second-line .car-description .title {
+    font-size: 36px!important;
+    margin-bottom: 20px!important;
+}
+
+.car-description .description span {
+    transform: translateY(-200px)!important;
+    opacity: 0!important;
+    display: inline-block!important;
+    transition: 0.5s transform, 0.1s opacity!important;
+}
+
+.car-description .description span.space {
+    margin: 0 3px!important;
+}
+
+@media screen and (max-width: 1500px)
+{
+    header .header-content {
+        width: 1024px!important;
+    }
+    body > .car .first-line {
+        width: 1024px!important;
+    }
+    body > .car .first-line .model-3d {
+        width: 500px!important;
+        height: 500px!important;
+    }
+    body > .car .modifications {
+        width: 500px!important;
+    }
+    body > .car .modifications .modification-list {
+        height: 438px!important;
+    }
+    body > .car .second-line {
+        width: 1024px!important;
+    }
+}
+
+.car .first-line .model-3d {
+    transform: translateX(-100vw)!important;
+}
+
+.car .first-line .modifications {
+    transform: translateX(100vw)!important;
+}
+
+.car.anim-run .first-line .modifications, .car.anim-run .first-line .model-3d{
+    transform: translateX(0)!important;
+}
+
+body > .car > .car-title.anim-run {
+    transform: translateY(0)!important;
+    opacity: 1!important;
+}
