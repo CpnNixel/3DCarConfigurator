@@ -19,9 +19,9 @@
 
 <div class="page">
     <div class="filters">
-        <div class="title">Фильтры</div>
+        <div class="title">Filtration</div>
         <div class="filter-group">
-            <div class="title">Марка</div>
+            <div class="title">Mark</div>
             @foreach (var car in Model)
             {
                 @if (!models.Contains(car.Name.Split(" ")[0]))
@@ -34,21 +34,21 @@
             }
         </div>
         <div class="filter-group">
-            <div class="title">Цена</div>
+            <div class="title">Price</div>
             From:<br />
             <input type="number" value="@min" min="@min" max="@max" id="min" /><br />
             To:<br />
             <input type="number" value="@max" min="@min" max="@max" id="max" />
             <br />
         </div>
-        <button class="apply-filter button" id="btnFil">Применить</button>
+        <button class="apply-filter button" id="btnFil">Accept</button>
     </div>
     <div class="right">
-        <div class="car-title">Список всех машин:</div>
+        <div class="car-title">List of all cars:</div>
         <div class="car-list">
             @foreach (var car in Model)
             {
-            <a href="~/Car/CarPage/@car.Id" class="car car1" data-name="@car.Name.Split(" ")[0]" data-price="@car.CarPrice">
+            <a href="~/Car/CarPage/@car.Id" class="car" data-name="@car.Name.Split(" ")[0]" data-price="@car.CarPrice">
                 <div class="car-content">
                     <div class="img" style="background-image: url('../../../img/@car.PathToModel')"></div>
                     <div class="title">@car.Name</div>
@@ -62,7 +62,7 @@
 
 
 <script>
-    document.querySelector("#btnFil").onclick = function () {
+    /*document.querySelector("#btnFil").onclick = function () {
         var cars = document.querySelectorAll(".car1");
         var checked = document.querySelectorAll(".checkbox");
         var marks = [];
@@ -83,5 +83,5 @@
                 el.style.display = "inline-block";
             }
         });
-    };
+    };*/
 </script>

@@ -206,20 +206,35 @@ header .header-content .dropdown-button .dropdown-content .dropdown-line:last-of
 
     .page .car-list .car {
         flex-basis: 33% !important;
-        display: flex !important;
+        display: flex;
         justify-content: center !important;
         align-items: center !important;
         margin-bottom: 40px !important;
     }
 
         .page .car-list .car .img {
-            width: 200px !important;
-            height: 150px !important;
+            width: 380px !important;
+            height: 260px !important;
             background-size: contain !important;
             background-position: center !important;
             background-repeat: no-repeat !important;
         }
 
+
+#like {
+    padding: 20px 60px;
+    background-color: white;
+    font-size: 24px;
+    color: #c90c0f;
+    border-radius: 36px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s all;
+}
+
+    #like:hover {
+        transform: scale(1.05);
+    }
 .page > .right {
     display: flex !important;
     width: 100% !important;
@@ -456,4 +471,18 @@ body > .car > .car-title.anim-run {
     display: flex;
     flex-direction: column;
     margin-left: 20px;
+}
+
+.cars{
+    width: 80vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.cars .car{
+    flex-basis: 33%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

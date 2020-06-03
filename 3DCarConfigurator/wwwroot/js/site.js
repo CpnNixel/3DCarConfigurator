@@ -43,6 +43,32 @@ $(document).ready(() => {
     var string = $('.car-description .description').text().split("");
     $('.car-description .description').html('');
     for (var i = 0; i < string.length; i++) {
-        $('.car-description .description').html($('.car-description .description').html() + (string[i] == ' ' ? '<span class="space">' : '<span>') + string[i] + '</span>');
+        $('.car-description .description').html($('.car-description .description').html() + (string[i] == ' ' ? '<span class="space">' : '<span>')
+            + string[i] + '</span>');
     }
+
+    document.querySelector("#btnFil").onclick = function () {
+        var cars = document.querySelectorAll(".car");
+        var checked = document.querySelectorAll(".checkbox");
+        var marks = [];
+        var min = document.querySelector("#min").value;
+        var max = document.querySelector("#max").value;
+
+
+        checked.forEach((el) => {
+            if (el.checked) {
+                marks.push(el.value);
+            }
+        });
+        cars.forEach((el) => {
+            if (!marks.includes(el.dataset.name) || (el.dataset.price > max && el.dataset.price < min)) {
+                el.style.display = "none";
+
+            } else if (marks.includes(el.dataset.name) || (el.dataset.price < max && el.dataset.price > min)) {
+                el.style.display = "inline-block";
+            }
+        });
+    };
+
 });
+
