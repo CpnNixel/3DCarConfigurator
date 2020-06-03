@@ -3,49 +3,66 @@
     ViewData["Title"] = "Car";
 }
 
-<link rel="stylesheet" href="~/css/CarPage.css" />
 
-<iframe width="650" height="500" allowfullscreen src="@Model.CurrentConfig.Model3dPath"></iframe>
-
-<div class="configurations">
-    <div class="details">
-        <div class="colors">
-            <div class="colorHeader">Color:</div>            
-
-                @foreach (var detail in Model.Details.Where(x => x.Category == "Color"))
-                {
-                    if (Model.PickedDetails.Contains(detail.Id))
-                    {
-                        <div class="color selected" style=" background: @detail.Name;" data-detailId="@detail.Id" asp-for="color"></div>
-                    }
-                    else
-                    {
-                        <div class="color" style=" background: @detail.Name;" data-detailId="@detail.Id" asp-for="color"></div>
-                    }
-
-                }
-
-            
+<div class="car animate-block">
+    <div class="car-title animate-block">@Model.Car.Name</div>
+    <div class='first-line'>
+        <div class="model-3d">
+            <iframe width="600" height="600" allowfullscreen src="@Model.CurrentConfig.Model3dPath"></iframe>
         </div>
-        <div class="wheels">
-           
+        <div class="modifications">
+            <div class="title">Модификации</div>
+            <div class="modification-list">
 
-                @foreach (var detail in Model.Details.Where(x => x.Category == "Wheels"))
+
+                <div class="modification">
+                    <div class="colorHeader">Color:</div>
+
+                    @foreach (var detail in Model.Details.Where(x => x.Category == "Color"))
                 {
                     if (Model.PickedDetails.Contains(detail.Id))
                     {
-                        <p><input type="radio" name="Wheels" data-detailId="@detail.Id" checked />@detail.Name</p>
+                    <div class="color selected" style=" background: @detail.Name;" data-detailId="@detail.Id" asp-for="color"></div>
                     }
                     else
                     {
-                        <p><input type="radio" name="Wheels" data-detailId="@detail.Id" />@detail.Name</p>
+                    <div class="color" style=" background: @detail.Name;" data-detailId="@detail.Id" asp-for="color"></div>
                     }
+
                 }
 
-            
+                </div>
+
+                <div class="modification">
+                    <div class="colorHeader">Wheels:</div>
+                    @foreach (var detail in Model.Details.Where(x => x.Category == "Wheels"))
+                {
+                    if (Model.PickedDetails.Contains(detail.Id))
+                    {
+                    <p><input type="radio" name="Wheels" data-detailId="@detail.Id" checked />@detail.Name</p>
+                    }
+                    else
+                    {
+                    <p><input type="radio" name="Wheels" data-detailId="@detail.Id" />@detail.Name</p>
+                    }
+                }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="second-line">
+        <div class="car-description animate-block">
+            <div class="title">Описание</div>
+            <div class="description">@Model.Car.Description</div>
         </div>
     </div>
 </div>
+
+
+
+
+<link rel="stylesheet" href="~/css/CarPage.css" />
+
 
 <p id="like">LIKE</p>
 

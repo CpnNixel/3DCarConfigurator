@@ -26,9 +26,7 @@
     <Content Remove="wwwroot\img\bmw-m5.jfif" />
     <Content Remove="wwwroot\img\bmw-m5.png" />
     <Content Remove="wwwroot\img\dodge-viper.PNG" />
-    <Content Remove="wwwroot\img\logo.png" />
     <Content Remove="wwwroot\img\mazda-rx7.png" />
-    <Content Remove="wwwroot\img\title-image.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -37,9 +35,7 @@
     <None Include="wwwroot\img\bmw-m5.jfif" />
     <None Include="wwwroot\img\bmw-m5.png" />
     <None Include="wwwroot\img\dodge-viper.PNG" />
-    <None Include="wwwroot\img\logo.png" />
     <None Include="wwwroot\img\mazda-rx7.png" />
-    <None Include="wwwroot\img\title-image.jpg" />
   </ItemGroup>
 
   <ItemGroup>

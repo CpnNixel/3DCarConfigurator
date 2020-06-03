@@ -94,12 +94,6 @@ namespace _3DCarConfigurator
             
             if (!context.Configurations.Any())
             {
-
-                var DetailsString = context.Details.Where(x => Convert.ToInt32(x.Id) == 2).FirstOrDefault();
-                return; /*.Id.ToString() + "," +
-                            context.Details.Where(x => x.Name == "18 radius").FirstOrDefault().Id.ToString()
-                dsdsds*/
-                    return;
                 
                 context.Configurations.AddRange(
                         new Models.Configuration

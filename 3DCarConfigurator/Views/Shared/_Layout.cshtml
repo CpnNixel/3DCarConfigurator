@@ -8,23 +8,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title> - _3DCarConfigurator</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/site.css" />                 
 </head>-->
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <meta charset="UTF-8">
     <title>@ViewData["Title"]</title>
-    <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="widht=device-widht, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!--<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />-->
-    <link rel="stylesheet" href="~/css/style.css" />
-    <script src="script.js"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/stylee.css" />
+    <script src="~/js/script.js"></script>
 
     <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 <body class="main">
     <header>
+
         <div class="header-content">
             <a asp-area="" asp-controller="Home" asp-action="Index"><img src="../../../img/logo.png"></a>
             <div class="title-name">Car Configurator DELUXE</div>
@@ -33,7 +33,7 @@
             <div class="dropdown-button">
                 FrostDamage
                 <div class="dropdown-content">
-                    <div class="dropdown-line">Личный кабинет</div>
+                    <div class="dropdown-line"><a asp-area="Identity" asp-page="/Account/Manage/Index" style="text-decoration: none;">Personal Account</a></div>
                     <!--<div class="dropdown-line">Выход</div>-->
                     <form class="" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
                         <button type="submit" class="dropdown-line">Logout</button>
@@ -46,6 +46,7 @@
             }
         </div>
     </header>
+    <div class="title-image"></div>
     <!--<header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
@@ -72,18 +73,17 @@
         </nav>
     </header>-->
     <!--<div class="container">-->
-        <!--<main role="main" class="pb-3">-->
+    <!--<main role="main" class="pb-3">-->
 
 
-            @RenderBody()
-        <!--</main>-->
+    @RenderBody()
+    <!--</main>-->
     <!--</div>-->
-
-   <!-- <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2020 - _3DCarConfigurator - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>-->
+    <!-- <footer class="border-top footer text-muted">
+         <div class="container">
+             &copy; 2020 - _3DCarConfigurator - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+         </div>
+     </footer>-->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
