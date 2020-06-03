@@ -10,6 +10,7 @@ using _3DCarConfigurator.ViewModels;
 using Org.BouncyCastle.Bcpg;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Org.BouncyCastle.Crypto.Tls;
+using System.Drawing;
 
 namespace _3DCarConfigurator.Controllers
 {
@@ -240,6 +241,13 @@ namespace _3DCarConfigurator.Controllers
                 Cars = RecommendCars,
                 Configurations = RecommendConfigs
             };
+
+            while(lvm.Cars.Count() > 4)
+            {
+                int a = rand.Next(0, lvm.Cars.Count() - 1);
+                lvm.Cars.RemoveAt(a);
+                lvm.Configurations.RemoveAt(a);
+            }
 
             return View(lvm);
         }

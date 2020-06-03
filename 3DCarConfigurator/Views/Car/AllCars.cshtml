@@ -20,44 +20,47 @@
 
 <link rel="stylesheet" href="~/css/Cars.css" />
 <h1>Cars</h1>
-<div class="sort">
-    @foreach (var car in Model)
-    {
-        @if (!models.Contains(car.Name.Split(" ")[0]))
+<div>
+    <div class="sort">
+        @foreach (var car in Model)
         {
-            <p><input type="checkbox" name="Mark" checked value="@car.Name.Split(" ")[0]" class="checkbox"/>@car.Name.Split(" ")[0]</p>
+            @if (!models.Contains(car.Name.Split(" ")[0]))
+            {
+                <span><input type="checkbox" name="Mark" checked value="@car.Name.Split(" ")[0]" class="checkbox" />@car.Name.Split(" ")[0]</span><br />
 
-            models.Add(car.Name.Split(" ")[0]);
+                models.Add(car.Name.Split(" ")[0]);
+            }
+
         }
 
-    }
+        From:<br />
+        <input type="number" value="@min" min="@min" max="@max" id="min" /><br />
+        To:<br />
+        <input type="number" value="@max" min="@min" max="@max" id="max" />
+        <br />
+        <button type="button" class="btn btn-info" id="btn">Click</button>
 
-    <p><input type="checkbox" name="Mark" checked value="Audi" class="checkbox" />Audi</p>
+    </div>
+    <div class="cars">
 
-    <input type="number" value="@min" min="@min" max="@max" id="min"/>
-    <input type="number" value="@max" min="@min" max="@max" id="max"/>
-    <br />
-    <div id="btn">Click</div>
 
-</div>
-<div class="cars">
-    
-
-    @foreach (var car in Model)
-    {
-        <div class="car"  data-name="@car.Name.Split(" ")[0]" data-price="@car.CarPrice">
-            <img src="~/img/@car.PathToModel" width="350" height="200" /><br />
-            <div class="description">
-                <span class="carName">
-                    <b>Name:</b> @car.Name
-                </span><br />
-                <span class="carPrice">
-                    <b>Price:</b> @car.CarPrice
-                </span>
-                <a href="CarPage/@car.Id">Open page</a>
+        @foreach (var car in Model)
+        {
+            <div class="car" data-name="@car.Name.Split(" ")[0]" data-price="@car.CarPrice">
+                <img src="~/img/@car.PathToModel" width="350" height="200" /><br />
+                <div class="description">
+                    <span class="carName">
+                        <b>Name:</b> @car.Name
+                    </span><br />
+                    <span class="carPrice">
+                        <b>Price:</b> @car.CarPrice$
+                    </span>
+                    <br />
+                    <a href="CarPage/@car.Id">Open page</a>
+                </div>
             </div>
-        </div>
-    }
+        }
+    </div>
 </div>
 
 <script>

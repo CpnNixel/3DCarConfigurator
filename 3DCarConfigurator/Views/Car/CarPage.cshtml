@@ -10,47 +10,66 @@
 
 <div class="configurations">
     <div class="details">
+        <p style="text-align: center; font-size: 22px;">@Model.Car.Name</p>
         <div class="colors">
-            <div class="colorHeader">Color:</div>            
+            <div class="colorHeader">Color:</div>
 
-                @foreach (var detail in Model.Details.Where(x => x.Category == "Color"))
+            @foreach (var detail in Model.Details.Where(x => x.Category == "Color"))
+            {
+                if (Model.PickedDetails.Contains(detail.Id))
                 {
-                    if (Model.PickedDetails.Contains(detail.Id))
-                    {
-                        <div class="color selected" style=" background: @detail.Name;" data-detailId="@detail.Id" asp-for="color"></div>
-                    }
-                    else
-                    {
-                        <div class="color" style=" background: @detail.Name;" data-detailId="@detail.Id" asp-for="color"></div>
-                    }
-
+                    <div class="color selected" style=" background: @detail.Name;" data-detailId="@detail.Id" data-price="@detail.DetailPrice" asp-for="color"></div>
+                }
+                else
+                {
+                    <div class="color" style=" background: @detail.Name;" data-detailId="@detail.Id" data-price="@detail.DetailPrice" asp-for="color"></div>
                 }
 
-            
+            }
+
+
         </div>
         <div class="wheels">
-           
+            <div class="colorHeader">Wheels:</div>
 
-                @foreach (var detail in Model.Details.Where(x => x.Category == "Wheels"))
+            @foreach (var detail in Model.Details.Where(x => x.Category == "Wheels"))
+            {
+
+                if (Model.PickedDetails.Contains(detail.Id))
                 {
-                    if (Model.PickedDetails.Contains(detail.Id))
-                    {
-                        <p><input type="radio" name="Wheels" data-detailId="@detail.Id" checked />@detail.Name</p>
-                    }
-                    else
-                    {
-                        <p><input type="radio" name="Wheels" data-detailId="@detail.Id" />@detail.Name</p>
-                    }
+                    <p><input type="radio" onclick="kek(this)" class="ch" name="Wheels" data-detailId="@detail.Id" data-price="@detail.DetailPrice" checked />@detail.Name</p>
                 }
+                else
+                {
+                    <p><input type="radio" onclick="kek(this)" class="ch" name="Wheels" data-detailId="@detail.Id" data-price="@detail.DetailPrice" />@detail.Name</p>
+                }
+            }
 
-            
+
         </div>
+
+        <br />
+        <p id="price">Price: <span></span>$</p>
+        <button type="button" class="btn btn-primary" id="like">Like</button>
+
     </div>
 </div>
 
-<p id="like">LIKE</p>
+<div class="des">
+    <h6>Description</h6>
+    <p>@Model.Car.Description</p>
+</div>
 
 <script>
+    var color = document.querySelector(".selected");
+    var wheel = document.querySelectorAll("input:checked");
+    var price = +color.dataset.price;
+    price += +@Model.Car.CarPrice;
+    wheel.forEach((el) => {
+        price += +el.dataset.price;
+    });
+
+    document.querySelector("#price > span").textContent = price;
     document.querySelector("#like").onclick = function () {
         var configurationDetails = "";
 
@@ -84,6 +103,23 @@
 
             document.location.replace("../../Car/ChangeConfig/" + @Model.Car.Id + "," + configurationDetails);
         };
-    })
+    });
+
+
+
+    function kek(el) {
+        
+            var configurationDetails = "";
+
+            var pickedColor = document.querySelector(".selected");
+            configurationDetails = pickedColor.dataset.detailid;
+
+            var checkedList = document.querySelectorAll("input:checked");
+            checkedList.forEach((element) => {
+                configurationDetails += "," + element.dataset.detailid;
+            })
+
+            document.location.replace("../../Car/ChangeConfig/" + @Model.Car.Id + "," + configurationDetails);
+    }
 </script>
 

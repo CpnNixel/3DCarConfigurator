@@ -173,43 +173,56 @@ namespace _3DCarConfigurator
                 context.SaveChanges();
             }
             /*
+            context.Cars.AddRange(
+                new Models.Car
+                {
+                    Name = "BMW i8",
+                    PathToModel = "bmw2_blue_18.png",
+                    CarPrice = 115000
+                }
+                );
+            context.SaveChanges();
             context.Configurations.AddRange(
                         new Models.Configuration
                         {
-                            CarId = context.Cars.Where(x => x.Name == "BMW").First().Id,
-
-                            DetailsString = (context.Details.Where(x => x.Name == "Blue").FirstOrDefault().Id.ToString() + "," +
-                            context.Details.Where(x => x.Name == "20 radius").FirstOrDefault().Id.ToString()),
-                            Model3dPath = "https://cdn.soft8soft.com/AROAJSY2GOEHMOFUVPIOE:d53431878a/applications/BMW_Blue_20_black/BMW_Blue_20_black.html"
-                        },
-                        new Models.Configuration
-                        {
-                            CarId = context.Cars.Where(x => x.Name == "BMW").First().Id,
+                            CarId = context.Cars.Where(x => x.Name == "Mercedes Roadster").First().Id,
 
                             DetailsString = (context.Details.Where(x => x.Name == "Blue").FirstOrDefault().Id.ToString() + "," +
                             context.Details.Where(x => x.Name == "18 radius").FirstOrDefault().Id.ToString()),
-                            Model3dPath = "https://cdn.soft8soft.com/AROAJSY2GOEHMOFUVPIOE:d53431878a/applications/BMW_Blue_18_black/BMW_Blue_18_black.html"
+                            Model3dPath = "https://cdn.soft8soft.com/AROAJSY2GOEHMOFUVPIOE:d53431878a/applications/BMW2_Blue_18/BMW2_Blue_18.html",
+                            ImgPath = "bmw2_blue_18.png"
                         },
                         new Models.Configuration
                         {
-                            CarId = context.Cars.Where(x => x.Name == "BMW").First().Id,
+                            CarId = context.Cars.Where(x => x.Name == "Mercedes Roadster").First().Id,
 
-                            DetailsString = (context.Details.Where(x => x.Name == "Red").FirstOrDefault().Id.ToString() + "," +
+                            DetailsString = (context.Details.Where(x => x.Name == "Blue").FirstOrDefault().Id.ToString() + "," +
                             context.Details.Where(x => x.Name == "20 radius").FirstOrDefault().Id.ToString()),
-                            Model3dPath = "https://cdn.soft8soft.com/AROAJSY2GOEHMOFUVPIOE:d53431878a/applications/BMW_Red_18_black/BMW_Red_18_black.html"
+                            Model3dPath = "https://cdn.soft8soft.com/AROAJSY2GOEHMOFUVPIOE:d53431878a/applications/BMW2_Blue_20/BMW2_Blue_20.html",
+                            ImgPath = "bmw2_blue_18.png"
                         },
                         new Models.Configuration
                         {
-                            CarId = context.Cars.Where(x => x.Name == "BMW").First().Id,
+                            CarId = context.Cars.Where(x => x.Name == "Mercedes Roadster").First().Id,
 
                             DetailsString = (context.Details.Where(x => x.Name == "Red").FirstOrDefault().Id.ToString() + "," +
                             context.Details.Where(x => x.Name == "18 radius").FirstOrDefault().Id.ToString()),
-                            Model3dPath = "https://cdn.soft8soft.com/AROAJSY2GOEHMOFUVPIOE:d53431878a/applications/BMW_Red_20_black/BMW_Red_20_black.html"
+                            Model3dPath = "https://cdn.soft8soft.com/AROAJSY2GOEHMOFUVPIOE:d53431878a/applications/BMW2_Red_18/BMW2_Red_18.html",
+                            ImgPath = "bmw2_red_18.png"
+                        },
+                        new Models.Configuration
+                        {
+                            CarId = context.Cars.Where(x => x.Name == "Mercedes Roadster").First().Id,
+
+                            DetailsString = (context.Details.Where(x => x.Name == "Red").FirstOrDefault().Id.ToString() + "," +
+                            context.Details.Where(x => x.Name == "20 radius").FirstOrDefault().Id.ToString()),
+                            Model3dPath = "https://cdn.soft8soft.com/AROAJSY2GOEHMOFUVPIOE:d53431878a/applications/BMW2_Red_20/BMW2_Red_20.html",
+                            ImgPath = "bmw2_red_18.png"
                         }
 
                     );
             context.SaveChanges();
-            context.Cars.Where(x => x.Name == "BMW").First().CurrentConfigurationId = context.Configurations.Where(x => x.CarId == context.Cars.Where(x => x.Name == "BMW").First().Id).First().Id;
+            context.Cars.Where(x => x.Name == "BMW i8").First().CurrentConfigurationId = context.Configurations.Where(x => x.CarId == context.Cars.Where(x => x.Name == "BMW i8").First().Id).First().Id;
             context.SaveChanges();*/
             
         }

@@ -3,12 +3,13 @@
     width: 20%;
     height: 100%;
     display: inline-block;
+    box-sizing: border-box;
 }
 .cars {
     width: 79%;
     height: 100%;
-    display: inline-flex;
-    justify-content: space-between;
+    display: inline-grid;
+    grid-template-columns: 350px 350px;
 }
 
 .car {
@@ -22,4 +23,12 @@
     height: 100%;
     padding: 20px;
     font-size: 18px;
+}
+
+#btn{
+    margin-top: 25px;
+}
+p{
+    margin-left: 0;
+    margin-right: 0;
 }
