@@ -244,10 +244,14 @@ body > .car .first-line {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    transition: 0.5s all;
 }
 
 body > .car > .car-title {
     font-size: 42px;
+    transition: 0.5s all;
+    transform: translateY(-50vh);
+    opacity: 0;
 }
 
 body > .car .model-3d {
@@ -255,12 +259,14 @@ body > .car .model-3d {
     background-color: #5353ff;
     height: 600px;
     margin-top: 79px;
+    transition: 0.5s all;
 }
 
 body > .car .modifications {
     display: flex;
     flex-direction: column;
     width: 600px;
+    transition: 0.5s all;
     align-items: center;
 }
 
@@ -307,6 +313,7 @@ body > .car .second-line {
     align-items: center;
     flex-direction: row;
     justify-content: space-between;
+    transition: 0.5s all;
     width: 1440px;
 }
 
@@ -361,6 +368,17 @@ body > .car .second-line .car-description .title {
     margin-bottom: 20px;
 }
 
+.car-description .description span {
+    transform: translateY(-200px);
+    opacity: 0;
+    display: inline-block;
+    transition: 0.5s transform, 0.1s opacity;
+}
+
+.car-description .description span.space {
+    margin: 0 3px;
+}
+
 @media screen and (max-width: 1500px)
 {
     header .header-content {
@@ -382,4 +400,21 @@ body > .car .second-line .car-description .title {
     body > .car .second-line {
         width: 1024px;
     }
+}
+
+.car .first-line .model-3d {
+    transform: translateX(-100vw);
+}
+
+.car .first-line .modifications {
+    transform: translateX(100vw);
+}
+
+.car.anim-run .first-line .modifications, .car.anim-run .first-line .model-3d{
+    transform: translateX(0);
+}
+
+body > .car > .car-title.anim-run {
+    transform: translateY(0);
+    opacity: 1;
 }
