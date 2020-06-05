@@ -1,9 +1,9 @@
 # 3DCarConfigurator is a team project made by
 * CpnNixel
-* Zondic
-* FrostDamage
-* AlienOld
-* Denis112233
+* [Zondic](https://github.com/zondic)
+* [FrostDamage](https://github.com/FrostDamage1337)
+* [AlienOld](https://github.com/AlienOld)
+* [Denis112233](https://github.com/Denis112233)
 
 Project represents the implementation of an idea of what Car Configurators should look like because these days **EVERY** car configurator is made up of 2D pictures which is kinda' embarrassing to look at in 2020.  
 The project might have issues and terrific design decisions, but it was done in a (lazy) week.<br/>
